@@ -12,15 +12,14 @@
     "navigationBarTextStyle": "black"
   },
   "usingComponents": {
-    "van-button": "vant-weapp/dist/button/index",
-    "l-button":"../static/dist/button/index",
     "l-icon":"../static/dist/icon/index",
-    "l-list":"../static/dist/list/index"
+    "l-button":"../static/dist/button/index",
+    "van-dialog":"/vant-weapp/dist/dialog/index"
   },
   "tabBar": {
     "color": "#707070",
     "backgroundColor": "#fafafa",
-    "selectedColor": "#1296db",
+    "selectedColor": "#13227a",
     "borderStyle": "white",
     "list": [{
       "text": "首页",
