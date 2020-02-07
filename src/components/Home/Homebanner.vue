@@ -1,7 +1,7 @@
 <template>
   
     <div class="swipper-wrapper">
-      <swiper class="swipper" indicator-dots="true" circular="true" autoplay="true" interval="5000" duration="500">
+      <swiper class="swipper"  circular="true" autoplay="true" interval="5000" duration="500">
         <swiper-item  v-for="(item,index) of swiperList" :key="index">
           <img class="swipper-item" mode="widthFix"  :src="item.imageUrl"/>
         </swiper-item>
@@ -49,6 +49,8 @@ export default {
     width 335px
     height 125px
     margin-left 20px
+    border-radius 15px
+    overflow hidden
     .swipper
       .swipper-item
         width 100%

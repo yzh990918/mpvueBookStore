@@ -16,8 +16,16 @@ export function get (url, params = {}) {
   if (fly) {
     return new Promise((resolve, reject) => {
       fly.get(url, params).then(response => {
-        console.log(response)
-        resolve(response)
+        if (response && response.data) {
+          resolve(response)
+        } else {
+          const msg = (response && response.data && response.data.msg) || '请求失败'
+          mpvue.showToast({
+            title: msg,
+            duration: 2000
+          })
+          reject(response)
+        }
       }).catch(err => {
         hanldeError(err)
         reject(err)

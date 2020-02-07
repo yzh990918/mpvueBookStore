@@ -17,9 +17,10 @@
       </div>
       <div class="book-info">
         <div class="book-img-wrapper">
-          <div class="img-wrapper"><imageview  src="https://www.youbaobao.xyz/book/res/img//EarthSciences/978-981-10-3713-9_CoverFigure.jpg"></imageview></div>
-           <div class="img-wrapper"><imageview  src="https://www.youbaobao.xyz/book/res/img//EarthSciences/978-981-10-3713-9_CoverFigure.jpg"></imageview></div>
-            <div class="img-wrapper"><imageview  src="https://www.youbaobao.xyz/book/res/img//EarthSciences/978-981-10-3713-9_CoverFigure.jpg"></imageview></div>
+          <div class="img-wrapper" v-for="(item,index) of shelf" :key="index">
+            <imageview :src="item.cover">
+          </imageview>
+          </div>
         </div>
         <div class="book-shelf">
           <span class="title">书架</span>
@@ -35,11 +36,13 @@
 <script>
 import imageview from '../base/image-view/image-view'
 import dialog from 'vant-weapp/dist/dialog/dialog'
+import {getHomeData} from '../../api/index'
 export default {
   name: '',
   props: {
     data: {
-      type: Object
+      type: Array,
+      default: []
     },
     hasSign: {
       type: Boolean,
@@ -52,19 +55,29 @@ export default {
   },
   data () {
     return {
+      shelf: []
     }
   },
 
   components: {imageview},
-  created () {},
+  created () {
+  },
 
   computed: {},
 
   beforeMount () {},
 
-  mounted () {},
+  mounted () {
+    this.getshelf()
+  },
 
   methods: {
+    getshelf () {
+      getHomeData({openId: '1234'}).then(res => {
+        this.shelf = res.data.data.shelf
+        console.log(this.shelf)
+      })
+    },
     gotoShelf () {},
     selectBook () {},
     sign () {},

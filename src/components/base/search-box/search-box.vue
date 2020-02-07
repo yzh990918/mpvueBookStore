@@ -2,7 +2,7 @@
   <div class="search-box">
   <div class="search-box-wrapper" @click="onSearchclick">
     <l-icon size="30" name="research" class="research"></l-icon>
-    <input @confirm="onConfirm" @input="onChange" v-model="query" placeholder="搜索关键词" class="input"/>
+    <input @confirm="onConfirm" @input="onChange" v-model="query" :placeholder="hotSearch" class="input"/>
     <l-icon v-if="query.length>0" @click.stop="deleteQuery"  size="30" name="delete" class="delete"></l-icon>
      <van-dialog id="van-dialog"></van-dialog>
   </div>
@@ -36,7 +36,8 @@ export default {
   },
   data () {
     return {
-      query: ''
+      query: '',
+      hotquery: ''
 
     }
   },
@@ -48,7 +49,8 @@ export default {
 
   beforeMount () {},
 
-  mounted () {},
+  mounted () {
+  },
 
   methods: {
     onSearchclick () {
