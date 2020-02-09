@@ -4,16 +4,16 @@
       <div class="user-info">
         <div class="avatar">
         <imageview
-        src="https://www.youbaobao.xyz/mpvue-res/logo.jpg"
+        :src="avatar"
         round
         mode="scaleToFill"
         height="100%"
         ></imageview>
         </div>
-         <span class="nickName">米老鼠</span>
+         <span class="nickName">{{nickName}}</span>
       <span class="shelf-desc">书架共有三本好书</span>
       <div class="split"></div>
-      <span class="shelf-desc">特别精选</span>
+      <span class="shelf-desc right">特别精选</span>
       </div>
       <div class="book-info">
         <div class="book-img-wrapper">
@@ -37,6 +37,7 @@
 import imageview from '../base/image-view/image-view'
 import dialog from 'vant-weapp/dist/dialog/dialog'
 import {getHomeData} from '../../api/index'
+import {getStorageSync} from '../../api/wechat'
 export default {
   name: '',
   props: {
@@ -55,7 +56,9 @@ export default {
   },
   data () {
     return {
-      shelf: []
+      shelf: [],
+      avatar: '',
+      nickName: ''
     }
   },
 
@@ -69,13 +72,20 @@ export default {
 
   mounted () {
     this.getshelf()
+    this.getUserInfo()
   },
 
   methods: {
+    getUserInfo () {
+      const userInfo = getStorageSync('usnerInfo')
+      const {nickName, avatarUrl} = userInfo
+      this.avatar = avatarUrl
+      this.nickName = nickName
+      console.log(this.avatar, this.nickName)
+    },
     getshelf () {
       getHomeData({openId: '1234'}).then(res => {
         this.shelf = res.data.data.shelf
-        console.log(this.shelf)
       })
     },
     gotoShelf () {},
@@ -123,6 +133,11 @@ export default {
         color #ffffff
         margin-left 8.5px
         opacity .7
+        &.right
+          max-width 40px
+          overflow hidden
+          text-overflow ellipsis
+          white-space nowrap
       .split
         display flex
         align-items center

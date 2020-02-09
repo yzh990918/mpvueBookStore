@@ -15,6 +15,7 @@
     :style="{ height }"
     src="../../../../static/images/user.png"
     :mode="mode"
+    :lazy-load="lazyLoad"
     @error="onPreloadError"
     @load="onPreload"
     v-show="isLoading || error"
@@ -68,6 +69,7 @@
       },
       onError () {
         this.error = true
+        this.isLoading = false
       },
       onLoad () {
         this.isLoading = false

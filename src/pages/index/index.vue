@@ -1,7 +1,7 @@
 <template>
 <div>
   <div class="home" v-if="authLoginFlag">
-    <searchBox :hotSearch="hotsearch"></searchBox>
+    <searchBox :hotSearch="hotsearch" @onclick="Search"></searchBox>
     <Homecard></Homecard>
     <Homebanner></Homebanner>
     <div class="Homebook">
@@ -26,8 +26,8 @@ import searchBox from '../../components/base/search-box/search-box'
 import Homecard from '../../components/Home/Homecard'
 import Homebanner from '../../components/Home/Homebanner'
 import Homebook from '../../components/Home/Homebook'
-import {getHomeData, getrecommend, getfreeRead, gethotBook} from '../../api/index.js'
-import {getsetting, getUserInformation} from '../../api/wechat'
+import {getHomeData, getrecommend, getfreeRead, gethotBook, register} from '../../api/index.js'
+import {getsetting, getUserInformation, setStorageSync, getStorageSync, getOpenId, showLoading, hideLoading} from '../../api/wechat'
 import auth from '../../components/base/auth/auth'
 export default {
   name: '',
@@ -58,8 +58,8 @@ export default {
   },
 
   methods: {
-    getHomeInfo () {
-      getHomeData({openId: '1234'}).then((res) => {
+    getHomeInfo (openId) {
+      getHomeData({openId}).then((res) => {
         const {
           data: {
             hotSearch,
@@ -74,6 +74,9 @@ export default {
         this.freeread = freeRead
         this.hotBook = hotBook
         this.category = category
+        hideLoading()
+      }).catch(() => {
+        hideLoading()
       })
     },
     LoadingMore (key) {
@@ -99,6 +102,7 @@ export default {
       getsetting('userInfo', () => {
         this.authLoginFlag = true
         this.getUserInfo()
+        showLoading('正在加载')
       }, () => {
         this.authLoginFlag = false
       })
@@ -106,6 +110,15 @@ export default {
     getUserInfo () {
       getUserInformation((userInfo) => {
         console.log(userInfo)
+        setStorageSync('usnerInfo', userInfo)
+        const openId = getStorageSync('openId')
+        if (!openId || openId.length === 0) {
+          getOpenId()
+        } else {
+          // 已获得openid的回调执行
+          this.getHomeInfo(openId)
+          register(openId, userInfo)
+        }
       },
       () => {
         console.log('failed')
@@ -114,7 +127,9 @@ export default {
     },
     init () {
       this.getsetting()
-      this.getHomeInfo()
+    },
+    Search () {
+      this.$router.push('/pages/Search/main')
     }
   },
 

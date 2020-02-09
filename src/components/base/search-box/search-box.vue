@@ -2,7 +2,7 @@
   <div class="search-box">
   <div class="search-box-wrapper" @click="onSearchclick">
     <l-icon size="30" name="research" class="research"></l-icon>
-    <input @confirm="onConfirm" @input="onChange" v-model="query" :placeholder="hotSearch" class="input"/>
+    <input @focus="focus" @confirm="onConfirm" @input="onChange" v-model="query" :placeholder="hotSearch" class="input"/>
     <l-icon v-if="query.length>0" @click.stop="deleteQuery"  size="30" name="delete" class="delete"></l-icon>
      <van-dialog id="van-dialog"></van-dialog>
   </div>
@@ -31,7 +31,7 @@ export default {
     },
     hotSearch: {
       type: String,
-      default: ''
+      default: 'computer'
     }
   },
   data () {
@@ -57,6 +57,7 @@ export default {
       this.$emit('onclick')
     },
     onConfirm (e) {
+      this.$emit('confirm', e.mp.detail.value)
     },
     onChange (e) {
       let value = e.mp.detail.value
@@ -73,8 +74,12 @@ export default {
         message: '确定要删除吗'
       }).then(() => {
         this.query = ''
+        this.$emit('deleted', this.query)
       }).catch(() => {
       })
+    },
+    addquery (query) {
+      this.query = query
     }
 
   },
