@@ -6,7 +6,8 @@
     </div>
     <div class="tag-group-wrapper">
       <div class="tag-item" v-for="(item,index) in value" :key="index">
-        <tag @SelectTag="onTagClick(item.title)" :text="item.title"></tag>
+        <tag v-if="item.title" @SelectTag="onTagClick(item.title)" :text="item.title"></tag>
+         <tag v-if="!item.title" @SelectTag="onTagClick(item)" :text="item"></tag>
       </div>
     </div>
   </div>
@@ -49,7 +50,7 @@ export default {
       console.log(item)
     },
     onBtnClick () {
-
+      this.$emit('_handle')
     }
   },
 

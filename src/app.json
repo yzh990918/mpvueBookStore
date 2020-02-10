@@ -15,7 +15,9 @@
   "usingComponents": {
     "l-icon":"../static/dist/icon/index",
     "l-button":"../static/dist/button/index",
-    "van-dialog":"/vant-weapp/dist/dialog/index"
+    "van-dialog":"/vant-weapp/dist/dialog/index",
+    "l-loadmore":"/static/dist/loadmore/index",
+    "l-loading":"/static/dist/loading/index"
   },
   "tabBar": {
     "color": "#707070",

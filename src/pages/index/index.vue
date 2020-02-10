@@ -18,6 +18,9 @@
     </div>
   </div>
   <auth v-if="!authLoginFlag" @getUserInfo="init"></auth>
+  <div class="loading" v-if="!recommend.length > 0 && !freeread.length > 0 && !hotBook.length > 0 && !category.length > 0 && authLoginFlag">
+    <l-loading show="true" type="flash" size="large"></l-loading>
+  </div>
 </div>
   
 </template>
@@ -27,7 +30,7 @@ import Homecard from '../../components/Home/Homecard'
 import Homebanner from '../../components/Home/Homebanner'
 import Homebook from '../../components/Home/Homebook'
 import {getHomeData, getrecommend, getfreeRead, gethotBook, register} from '../../api/index.js'
-import {getsetting, getUserInformation, setStorageSync, getStorageSync, getOpenId, showLoading, hideLoading} from '../../api/wechat'
+import {getsetting, getUserInformation, setStorageSync, getStorageSync, getOpenId} from '../../api/wechat'
 import auth from '../../components/base/auth/auth'
 export default {
   name: '',
@@ -74,9 +77,7 @@ export default {
         this.freeread = freeRead
         this.hotBook = hotBook
         this.category = category
-        hideLoading()
       }).catch(() => {
-        hideLoading()
       })
     },
     LoadingMore (key) {
@@ -102,7 +103,6 @@ export default {
       getsetting('userInfo', () => {
         this.authLoginFlag = true
         this.getUserInfo()
-        showLoading('正在加载')
       }, () => {
         this.authLoginFlag = false
       })
@@ -138,6 +138,13 @@ export default {
 }
 </script>
 <style lang='stylus' scoped>
-.Homebook
-  margin-top 23px
+.home
+  .Homebook
+    margin-top 23px
+.loading
+  position absolute
+  left 50%
+  z-index 700
+  top 50%
+  transform translate3d(-50%,-50%,0)
 </style>

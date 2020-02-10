@@ -2,7 +2,7 @@
   <div class="search-box">
   <div class="search-box-wrapper" @click="onSearchclick">
     <l-icon size="30" name="research" class="research"></l-icon>
-    <input @focus="focus" @confirm="onConfirm" @input="onChange" v-model="query" :placeholder="hotSearch" class="input"/>
+    <input ref="input" @focus="focus" @confirm="onConfirm" @input="onChange" v-model="query" :placeholder="hotSearch" class="input"/>
     <l-icon v-if="query.length>0" @click.stop="deleteQuery"  size="30" name="delete" class="delete"></l-icon>
      <van-dialog id="van-dialog"></van-dialog>
   </div>
@@ -59,6 +59,12 @@ export default {
     onConfirm (e) {
       this.$emit('confirm', e.mp.detail.value)
     },
+    getvalue () {
+      return this.query
+    },
+    setvalue (query) {
+      this.query = query
+    },
     onChange (e) {
       let value = e.mp.detail.value
       if (value && value.length > this.limit) {
@@ -80,6 +86,9 @@ export default {
     },
     addquery (query) {
       this.query = query
+    },
+    blur () {
+      this.$refs.input.blur()
     }
 
   },
