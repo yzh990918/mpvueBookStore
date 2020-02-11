@@ -54,7 +54,7 @@ export default {
 
   methods: {
     onSearchclick () {
-      this.$emit('onclick')
+      this.$emit('oncatchclick')
     },
     onConfirm (e) {
       this.$emit('confirm', e.mp.detail.value)

@@ -1,10 +1,11 @@
 {
   "pages": [
     "pages/index/main",
-    "pages/Search/main",
     "pages/type/main",
+    "pages/Search/main",
     "pages/shell/main",
-    "pages/me/main"
+    "pages/me/main",
+    "pages/detail/main"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -15,9 +16,13 @@
   "usingComponents": {
     "l-icon":"../static/dist/icon/index",
     "l-button":"../static/dist/button/index",
-    "van-dialog":"/vant-weapp/dist/dialog/index",
+    "van-dialog":"../static/vant/dist/dialog/index",
     "l-loadmore":"/static/dist/loadmore/index",
-    "l-loading":"/static/dist/loading/index"
+    "l-loading":"/static/dist/loading/index",
+    "van-image":"../static/vant/dist/image/index",
+    "van-loading":"../static/dist/loading/index",
+    "van-rate":"../static/vant/dist/rate/index",
+    "l-message":"../static/dist/message/index"
   },
   "tabBar": {
     "color": "#707070",

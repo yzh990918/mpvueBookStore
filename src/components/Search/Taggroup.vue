@@ -6,8 +6,8 @@
     </div>
     <div class="tag-group-wrapper">
       <div class="tag-item" v-for="(item,index) in value" :key="index">
-        <tag v-if="item.title" @SelectTag="onTagClick(item.title)" :text="item.title"></tag>
-         <tag v-if="!item.title" @SelectTag="onTagClick(item)" :text="item"></tag>
+        <tag v-if="item.title" @SelectTag="onTagClick(item.fileName)" :text="item.title"></tag>
+         <tag v-if="!item.title" @SelectTag="onHistoryTagClick(item)" :text="item"></tag>
       </div>
     </div>
   </div>
@@ -47,7 +47,10 @@ export default {
 
   methods: {
     onTagClick (item) {
-      console.log(item)
+      this.$emit('Tobookdetail', item)
+    },
+    onHistoryTagClick (item) {
+      this.$emit('addinput', item)
     },
     onBtnClick () {
       this.$emit('_handle')

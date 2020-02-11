@@ -7,7 +7,7 @@
        @click="selectbook(item)"
       >
         <div class="image-wrapper">
-          <imageView :src="item.cover"></imageView>
+          <van-image width="47" height="68.5" lazy-load fit="cover" :src="item.cover"></van-image>
         </div>
         <div class="book-desc">
           <div class="title">{{item.title}}</div>

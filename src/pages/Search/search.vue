@@ -1,34 +1,31 @@
 <template>
   <div class="search">
-    <searchbox ref="box" @confirm="onConfirm" @deleted="deletequery" :focus="focus" @onChange="searchbegin"  @onclick="Search"></searchbox>
+    <searchbox ref="box" @confirm="onConfirm" @deleted="deletequery" :focus="focus" @onChange="searchbegin"  ></searchbox>
     <div class="tagGroup-wrapper" v-if="hotkeys.length > 0 && !query">
-    <tagGroup @_handle="changeHotKey" title="热门搜索" btnText="换一批" :value="hotkeys"></tagGroup>
+    <tagGroup @Tobookdetail="todetail" @_handle="changeHotKey" title="热门搜索" btnText="换一批" :value="hotkeys"></tagGroup>
     </div>
      <div class="tagGroup-wrapper" v-if="!query">
-    <tagGroup title="历史搜索" btnText="清空" @_handle="clearHistory" :value="history"></tagGroup>
+    <tagGroup @addinput="addInput" title="历史搜索" btnText="清空" @_handle="clearHistory" :value="history"></tagGroup>
     </div>
     <suggest v-if="query && searchlist" :data="searchlist"></suggest>
     <van-dialog id="van-dialog"></van-dialog>
-    <div class="loading" v-if="IsLoading && searchlist">
+    <div class="loading" v-if="IsLoading && searchlist && searchlist.book.length>0">
          <l-loadmore line="true" color="#3963bc"  show="true" type="loading"  loading-text="努力加载中"></l-loadmore>
     </div>
-    <div class="loading" v-if="isBottom && searchlist.book.length>0">
+    <div class="full-load" v-show="!hotkeys">
+       <l-loading
+       type="flip"
+       size="large"
+       bg-color="#fff"
+       z-index="2000"
+       show="true"
+       full-screen="true"
+       >
+    </l-loading>
+    </div>
+    <div class="loading" v-if="isBottom && searchlist && searchlist.book.length > 0">
          <l-loadmore line="true" show="true" type="end"  end-text="我也是有底线的(end)"></l-loadmore>
     </div>
-    <div class="fullscreen-loading" v-show="!hotkeys.length">
-      <l-loading
-  l-container-class="l-container"
-  bg-color="#f3f3f3"
-  z-index="776"
-  opacity="1"
-  show="true"
-  full-screen="true"
-  custom="true}"
->
-  <image class="loading-img" src="/static/images/loading2.gif"></image>
-</l-loading>
-    </div>
- 
   </div>
 </template>
 
@@ -52,7 +49,7 @@ export default {
       keyword: '',
       page: 1,
       history: [],
-      focus: true,
+      focus: false,
       IsLoading: false,
       isBottom: false
     }
@@ -86,6 +83,7 @@ export default {
         if (book && book.length > 0) {
           this.searchlist.book.push(...book)
           this.IsLoading = true
+          this.isBottom = false
         } else {
           this.isBottom = true
         }
@@ -98,9 +96,24 @@ export default {
     this.openId = getStorageSync('openId')
     this.gethotKey()
     this.history = getStorageSync(HISTORY_KEY)
+    this.query = ''
   },
 
   methods: {
+    addInput (item) {
+      this.$refs.box.setvalue(item)
+      this.query = item
+      this.search(item)
+      this.focus = true
+    },
+    todetail (item) {
+      this.$router.push({
+        path: '/pages/detail/main',
+        query: {
+          fileName: item
+        }
+      })
+    },
     clearHistory () {
       dialog.confirm({
         confirmButtonText: '确定',
@@ -148,7 +161,7 @@ export default {
         this.query = 'computer'
         this.search('computer')
       }
-      if (!this.history.includes(keyword)) {
+      if (!this.history.includes(keyword) && keyword !== '') {
         // 缓存
         console.log(keyword)
         this.list.push(keyword)
@@ -167,13 +180,14 @@ export default {
 <style lang='stylus' scoped>
 .search
   position relative
+  width 100%
+  height 100%
   .tagGroup-wrapper
     margin-top 20px
   .loading
     position absolute
-    z-index 10000
     width 100%
-    height 100%
+    z-index 10000
     background #fff
     left 50%
     transform translateX(-50%)

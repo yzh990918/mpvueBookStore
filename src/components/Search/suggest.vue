@@ -89,7 +89,13 @@ export default {
       console.log(item, key)
     },
     showBook (book) {
-      console.log(book)
+      const {fileName} = book
+      this.$router.push({
+        path: '/pages/detail/main',
+        query: {
+          fileName
+        }
+      })
     }
   },
 

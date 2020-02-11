@@ -3,12 +3,14 @@
     <div class="homecard-wrapper">
       <div class="user-info">
         <div class="avatar">
-        <imageview
+        <van-image
         :src="avatar"
         round
-        mode="scaleToFill"
-        height="100%"
-        ></imageview>
+        lazy-load
+       fit="cover"
+       width="20"
+       height="20"
+        ></van-image>
         </div>
          <span class="nickName">{{nickName}}</span>
       <span class="shelf-desc">书架共有三本好书</span>
@@ -17,9 +19,9 @@
       </div>
       <div class="book-info">
         <div class="book-img-wrapper">
-          <div class="img-wrapper" v-for="(item,index) of shelf" :key="index">
-            <imageview :src="item.cover">
-          </imageview>
+          <div @click="ToBookdeatil(item)" class="img-wrapper" v-for="(item,index) of shelf" :key="index">
+            <van-image fit="cover" width="72"  height="101" lazy-load  :src="item.cover">
+          </van-image>
           </div>
         </div>
         <div class="book-shelf">
@@ -31,11 +33,11 @@
        反馈
       </div>
     </div>
+    <l-message content="content"></l-message>
   </div>
 </template>
 <script>
 import imageview from '../base/image-view/image-view'
-import dialog from 'vant-weapp/dist/dialog/dialog'
 import {getHomeData} from '../../api/index'
 import {getStorageSync} from '../../api/wechat'
 export default {
@@ -92,12 +94,13 @@ export default {
     selectBook () {},
     sign () {},
     feed () {
-      dialog.confirm({
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        message: '确定提交反馈吗'
-      }).then(() => {
-      }).catch(() => {})
+      mpvue.lin.showMessage({
+        content: '反馈功能正在开发中',
+        duration: 3000
+      })
+    },
+    ToBookdeatil (item) {
+      this.$emit('Bookdetail', item)
     }
   },
 

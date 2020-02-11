@@ -57,3 +57,44 @@ export function onSearch (params) {
   const url = HOST + '/book/search'
   return get(url, params)
 }
+
+// 获取读书详情
+export function getBookDeatil (parmas) {
+  const url = HOST + '/book/detail'
+  return get(url, parmas)
+}
+
+// 获取读书目录
+export function getBookContents (params) {
+  const url = HOST + '/book/contents'
+  return get(url, params)
+}
+
+// 获取读书存储书架状态
+export function getShellInfo (params) {
+  const url = HOST + '/book/shelf/get'
+  return get(url, params)
+}
+
+// 为读书评分
+export function Rate (params) {
+  const url = HOST + '/book/rank/save'
+  return get(url, params)
+}
+
+// 加入书架
+export function addBookToShell (params) {
+  const url = HOST + '/book/shelf/save'
+  return get(url, {
+    shelf: JSON.stringify(params)
+  })
+}
+
+// 移出书架
+// 这里传递的参数是shelf 是个json字符串 ,需要转成String
+export function deleteBookFromShell (params) {
+  const url = HOST + '/book/shelf/remove'
+  return get(url, {
+    shelf: JSON.stringify(params)
+  })
+}

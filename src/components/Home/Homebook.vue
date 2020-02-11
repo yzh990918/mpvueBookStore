@@ -13,7 +13,9 @@
           <div class="home-book-wrapper"
                :style="{flexDirection : Mode ==='col' ?'row':'column'}"
                v-if=" Mode==='row'|| Mode==='col'">
-            <imageview :src="book.cover"></imageview>
+            <van-image @click="ToDetail(book)" v-if="Mode === 'row' && colStyle"  width="101" height="147" fit="cover" lazy-load :src="book.cover"></van-image>
+              <van-image @click="ToDetail(book)" v-if="Mode === 'row' && !colStyle"  width="68" height="99" fit="cover" lazy-load :src="book.cover"></van-image>
+             <van-image @click="ToDetail(book)" v-if="Mode === 'col'" width="64" height="88" fit="cover" lazy-load :src="book.cover"></van-image>
             <div class="book-title-wrapper book-title-row"
                  v-if="Mode === 'row'">
               <div class="book-title">
@@ -109,7 +111,8 @@ export default {
   },
   data () {
     return {
-      Mode: ''
+      Mode: '',
+      Col: 0
     }
   },
 
@@ -117,6 +120,13 @@ export default {
   created () {},
 
   computed: {
+    colStyle () {
+      if (this.col === 3) {
+        return true
+      } else {
+        return false
+      }
+    },
     bookData () {
       // 将数组数据结构转换成想要的数据结构(传入行列)
       if (this.data && this.data.length > 0) {
@@ -152,11 +162,15 @@ export default {
 
   mounted () {
     this.Mode = this.mode
+    this.Col = this.col
   },
 
   methods: {
     onMoreclick () {
       this.$emit('onMoreclick')
+    },
+    ToDetail (book) {
+      this.$emit('ToDetail', book)
     }
   },
 

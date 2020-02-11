@@ -1,20 +1,22 @@
 <template>
 <div>
   <div class="home" v-if="authLoginFlag">
-    <searchBox :hotSearch="hotsearch" @onclick="Search"></searchBox>
-    <Homecard></Homecard>
+    <searchBox :hotSearch="hotsearch" @oncatchclick="Search"></searchBox>
+    <div class="Homecard">
+    <Homecard @Bookdetail="changeTodetail"></Homecard>
+    </div>
     <Homebanner></Homebanner>
     <div class="Homebook">
-        <Homebook @onMoreclick="LoadingMore('recommend')" linearBg  mode="row" :row="1" :col="3" :data="recommend"  title="为你推荐" btnText="换一批"></Homebook>
+        <Homebook @ToDetail="Todetail" @onMoreclick="LoadingMore('recommend')" linearBg  mode="row" :row="1" :col="3" :data="recommend"  title="为你推荐" btnText="换一批"></Homebook>
     </div>
      <div class="Homebook">
-        <Homebook @onMoreclick="LoadingMore('freeRead')"   mode="col" :row="2" :col="2" :data="freeread"  title="免费阅读" btnText="换一批"></Homebook>
+        <Homebook @ToDetail="Todetail" @onMoreclick="LoadingMore('freeRead')"   mode="col" :row="2" :col="2" :data="freeread"  title="免费阅读" btnText="换一批"></Homebook>
     </div>
      <div class="Homebook">
-        <Homebook @onMoreclick="LoadingMore('hotRead')"  mode="row" :row="1" :col="4" :data="hotBook"  title="当前最热" btnText="换一批"></Homebook>
+        <Homebook @ToDetail="Todetail" @onMoreclick="LoadingMore('hotRead')"  mode="row" :row="1" :col="4" :data="hotBook"  title="当前最热" btnText="换一批"></Homebook>
     </div>
      <div class="Homebook">
-        <Homebook :row="3" :col="2" :data="category"  title="图书分类" btnText="查看全部"></Homebook>
+        <Homebook  @onMoreclick="Totype" :row="3" :col="2" :data="category"  title="图书分类" btnText="查看全部"></Homebook>
     </div>
   </div>
   <auth v-if="!authLoginFlag" @getUserInfo="init"></auth>
@@ -130,6 +132,29 @@ export default {
     },
     Search () {
       this.$router.push('/pages/Search/main')
+    },
+    Totype () {
+      mpvue.switchTab({
+        url: '/pages/type/main'
+      })
+    },
+    Todetail (book) {
+      const {fileName} = book
+      this.$router.push({
+        path: '/pages/detail/main',
+        query: {
+          fileName
+        }
+      })
+    },
+    changeTodetail (book) {
+      const {fileName} = book
+      this.$router.push({
+        path: '/pages/detail/main',
+        query: {
+          fileName
+        }
+      })
     }
   },
 

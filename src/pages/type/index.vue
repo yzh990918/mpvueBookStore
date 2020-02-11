@@ -1,7 +1,5 @@
 <template>
-  <div>
-    catalog
-  </div>
+<div></div>
 </template>
 
 <script>
