@@ -98,3 +98,21 @@ export function deleteBookFromShell (params) {
     shelf: JSON.stringify(params)
   })
 }
+
+// 获取图书列表
+export function getBooklist (params) {
+  const url = HOST + '/book/search-list'
+  return get(url, params)
+}
+
+// 获取书架列表
+export function getShelfList (params) {
+  const url = HOST + '/book/shelf/get'
+  return get(url, params)
+}
+
+// 获取分类列表
+export function getcatalogueList (params) {
+  const url = HOST + '/book/category/list/v2'
+  return get(url, params)
+}

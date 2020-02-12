@@ -4,7 +4,7 @@
     icon="order"
     :title="category"
     sub-title="category"
-    @selectItem="showList(category,'cate')"
+    @selectItem="showList(category,'category')"
     v-if="category"
     ></searchItem>
     <searchItem
@@ -86,7 +86,14 @@ export default {
 
   methods: {
     showList (item, key) {
-      console.log(item, key)
+      this.$router.push({
+        path: '/pages/Booklist/main',
+        query: {
+          item,
+          key,
+          title: item
+        }
+      })
     },
     showBook (book) {
       const {fileName} = book

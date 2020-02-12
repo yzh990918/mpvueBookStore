@@ -5,7 +5,8 @@
     "pages/Search/main",
     "pages/shell/main",
     "pages/me/main",
-    "pages/detail/main"
+    "pages/detail/main",
+    "pages/Booklist/main"
   ],
   "window": {
     "backgroundTextStyle": "light",

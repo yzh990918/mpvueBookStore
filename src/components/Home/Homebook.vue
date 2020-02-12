@@ -37,6 +37,7 @@
             </div>
           </div>
           <div class="category-wrappper"
+               @click.stop="toTypeList(book)"
                v-if="Mode==='cate'">
                    <div class="cate-text">{{book.text}}</div>
             <div class="cate-num">{{book.num}}本书</div>
@@ -171,6 +172,16 @@ export default {
     },
     ToDetail (book) {
       this.$emit('ToDetail', book)
+    },
+    toTypeList (book) {
+      this.$router.push({
+        path: '/pages/Booklist/main',
+        query: {
+          item: book.category,
+          key: 'categoryId',
+          title: book.categoryText
+        }
+      })
     }
   },
 

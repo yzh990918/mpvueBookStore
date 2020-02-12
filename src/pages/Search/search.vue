@@ -71,7 +71,6 @@ export default {
   onReachBottom () {
     let keyword = this.$refs.box.getvalue()
     if (keyword) {
-      console.log('需要加载更多了', this.page)
       console.log(this.IsLoading)
       this.page++
       onSearch({
@@ -98,7 +97,7 @@ export default {
     this.history = getStorageSync(HISTORY_KEY)
     this.query = ''
   },
-
+  // todo: 1.searchitem点击跳转到图书列表 2.图书分类点击跳转到图书列表 3.图书分类及功能实现 4.阅读器跳转 5.书架开发 6.个人中心开发
   methods: {
     addInput (item) {
       this.$refs.box.setvalue(item)
