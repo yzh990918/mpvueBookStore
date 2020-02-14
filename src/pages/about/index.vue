@@ -1,11 +1,11 @@
 <template>
   <div>
-    <shelf></shelf>
+    <about></about>
   </div>
 </template>
 
 <script>
-import shelf from '../../components/Shelf/Shlef'
+import about from '../../components/me/guanyu'
 export default {
   name: '',
   props: [''],
@@ -15,7 +15,7 @@ export default {
     }
   },
 
-  components: {shelf},
+  components: {about},
   created () {},
 
   computed: {},

@@ -1,12 +1,12 @@
 <template>
-  <div class="search-box">
+  <div class="search-box" bg-white>
   <div class="search-box-wrapper" @click="onSearchclick">
     <l-icon size="30" name="research" class="research"></l-icon>
     <input ref="input" @focus="focus" @confirm="onConfirm" @input="onChange" v-model="query" :placeholder="hotSearch" class="input"/>
     <l-icon v-if="query.length>0" @click.stop="deleteQuery"  size="30" name="delete" class="delete"></l-icon>
      <van-dialog id="van-dialog"></van-dialog>
   </div>
-  <div class="search-box-button">
+  <div class="search-box-button" v-if="showbtn">
     <l-button width="80" height="50">搜索</l-button>
   </div>
  
@@ -32,7 +32,8 @@ export default {
     hotSearch: {
       type: String,
       default: 'computer'
-    }
+    },
+    showbtn: Boolean
   },
   data () {
     return {
@@ -97,7 +98,8 @@ export default {
 </script>
 <style lang='stylus' scoped>
 .search-box
-  padding 15px 15px
+  z-index 2
+  padding 15px 15px 15px 15px
   display flex
   align-items center
   .search-box-wrapper

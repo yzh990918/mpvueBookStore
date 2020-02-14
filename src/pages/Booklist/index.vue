@@ -1,5 +1,5 @@
 <template>
-  <div class="search-list">
+  <div class="search-list bg-white">
     <div class="search-list-wrapper">
       <div class="search-table" 
       v-for="(item,index) in booklist" 
@@ -51,9 +51,6 @@ export default {
     this.page = 1
     this.getlist()
     console.log(this.$route.query.title)
-    mpvue.setNavigationBarTitle({
-      title: this.$route.query.title
-    })
   },
   onReachBottom () {
     this.page++

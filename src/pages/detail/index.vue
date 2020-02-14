@@ -1,11 +1,11 @@
 <template>
-  <div class="detail">
+  <div class="detail bg-white">
     <detailDesc :book="data"></detailDesc>
     <detailCount :data="data" :reader="this.readers" :readerNum="readerNum" :rankNum="rankNum" :rankAvg="rankAvg" :rateValue="rateValue" 
      @rate="hanlderate"
     ></detailCount>
     <detailContent :contents="contents"></detailContent>
-    <detailBottom @hanldeShelf="handleshelf" :isInShelf="isOnShelf"></detailBottom>
+    <detailBottom @hanldeShelf="handleshelf" :isInShelf="isOnShelf" @readbook="readBook"></detailBottom>
     <van-dialog id="van-dialog"></van-dialog>
     <l-message content="content"></l-message>
     <div class="loading" v-show="!readers.length || !contents.length">
@@ -51,9 +51,10 @@ export default {
 
   beforeMount () {},
 
-  mounted () {
+  onShow () {
     this.openId = getStorageSync('openId')
     this.getDetail()
+    this.getBookIsInShelf()
     getBookContents({
       fileName: this.$route.query.fileName
     }).then((res) => {
@@ -131,6 +132,12 @@ export default {
         }).catch(() => {
         })
       }
+    },
+    readBook () {
+      mpvue.lin.showMessage({
+        content: '正在努力开发中,感谢支持',
+        duration: 3500
+      })
     }
   },
 

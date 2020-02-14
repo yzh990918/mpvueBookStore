@@ -24,7 +24,7 @@
           </van-image>
           </div>
         </div>
-        <div class="book-shelf">
+        <div class="book-shelf" @click="goToShelf">
           <span class="title">书架</span>
           <l-icon class="icon" name="right" size="24" color="#ccc"></l-icon>
         </div>
@@ -90,7 +90,11 @@ export default {
         this.shelf = res.data.data.shelf
       })
     },
-    gotoShelf () {},
+    goToShelf () {
+      mpvue.switchTab({
+        url: '/pages/shell/main'
+      })
+    },
     selectBook () {},
     sign () {},
     feed () {

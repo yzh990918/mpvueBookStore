@@ -1,5 +1,5 @@
 <template>
-  <div class="search">
+  <div class="search bg-white" >
     <searchbox ref="box" @confirm="onConfirm" @deleted="deletequery" :focus="focus" @onChange="searchbegin"  ></searchbox>
     <div class="tagGroup-wrapper" v-if="hotkeys.length > 0 && !query">
     <tagGroup @Tobookdetail="todetail" @_handle="changeHotKey" title="热门搜索" btnText="换一批" :value="hotkeys"></tagGroup>
@@ -9,7 +9,7 @@
     </div>
     <suggest v-if="query && searchlist" :data="searchlist"></suggest>
     <van-dialog id="van-dialog"></van-dialog>
-    <div class="loading" v-if="IsLoading && searchlist && searchlist.book.length>0">
+    <div class="loading" v-if="IsLoading && searchlist && searchlist.book.length > 0">
          <l-loadmore line="true" color="#3963bc"  show="true" type="loading"  loading-text="努力加载中"></l-loadmore>
     </div>
     <div class="full-load" v-show="!hotkeys">
@@ -97,7 +97,7 @@ export default {
     this.history = getStorageSync(HISTORY_KEY)
     this.query = ''
   },
-  // todo: 1.searchitem点击跳转到图书列表 2.图书分类点击跳转到图书列表 3.图书分类及功能实现 4.阅读器跳转 5.书架开发 6.个人中心开发
+  // todo: 4.阅读器跳转 5.书架开发 6.个人中心开发
   methods: {
     addInput (item) {
       this.$refs.box.setvalue(item)

@@ -6,7 +6,10 @@
     "pages/shell/main",
     "pages/me/main",
     "pages/detail/main",
-    "pages/Booklist/main"
+    "pages/Booklist/main",
+    "pages/about/main",
+    "pages/log/main",
+    "pages/attention/main"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -23,7 +26,8 @@
     "van-image":"../static/vant/dist/image/index",
     "van-loading":"../static/dist/loading/index",
     "van-rate":"../static/vant/dist/rate/index",
-    "l-message":"../static/dist/message/index"
+    "l-message":"../static/dist/message/index",
+    "navBar":"../static/dist/navBar/navBar"
   },
   "tabBar": {
     "color": "#707070",

@@ -1,11 +1,11 @@
 <template>
   <div>
-    <shelf></shelf>
+    <log></log>
   </div>
 </template>
 
 <script>
-import shelf from '../../components/Shelf/Shlef'
+import log from '../../components/me/log'
 export default {
   name: '',
   props: [''],
@@ -15,7 +15,7 @@ export default {
     }
   },
 
-  components: {shelf},
+  components: {log},
   created () {},
 
   computed: {},

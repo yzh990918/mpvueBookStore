@@ -1,11 +1,11 @@
 <template>
   <div>
-    <shelf></shelf>
+   <attention></attention> 
   </div>
 </template>
 
 <script>
-import shelf from '../../components/Shelf/Shlef'
+import attention from '../../components/me/notice'
 export default {
   name: '',
   props: [''],
@@ -15,7 +15,7 @@ export default {
     }
   },
 
-  components: {shelf},
+  components: {attention},
   created () {},
 
   computed: {},

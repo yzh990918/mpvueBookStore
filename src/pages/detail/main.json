@@ -1,3 +1,5 @@
 {
-  "navigationBarTitleText": "书籍详情"
+  "navigationBarTitleText": "书籍详情",
+  "navigationBarBackgroundColor":"#70a1ff",
+  "navigationBarTextStyle":"white"
 }

@@ -1,33 +1,37 @@
 <template>
-  <div>
-    ME
-  </div>
+<div>
+<about></about>
+</div>
 </template>
 
 <script>
-  export default {
-    name: '',
-    props: [''],
-    data () {
-      return {
+import {getStorageSync} from '../../api/wechat'
+import about from '../../components/me/about'
+export default {
+  name: '',
+  props: [''],
+  data () {
+    return {
+      userInfo: []
 
-      }
-    },
-    components: {},
-    created () {},
+    }
+  },
+  components: {about},
+  created () {},
 
-    computed: {},
+  computed: {},
 
-    beforeMount () {},
+  beforeMount () {},
 
-    mounted () {},
+  mounted () {
+    this.userInfo = getStorageSync('usnerInfo')
+  },
 
-    methods: {},
+  methods: {},
 
-    watch: {}
+  watch: {}
 
-  }
+}
 </script>
-<style lang='stylus' scoped>
-
+<style lang="stylus" scoped>
 </style>

@@ -110,6 +110,10 @@ export function getShelfList (params) {
   const url = HOST + '/book/shelf/get'
   return get(url, params)
 }
+export function getUserJoindays (params) {
+  const url = HOST + '/user/day'
+  return get(url, params)
+}
 
 // 获取分类列表
 export function getcatalogueList (params) {

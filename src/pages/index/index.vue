@@ -1,7 +1,11 @@
 <template>
 <div>
-  <div class="home" v-if="authLoginFlag">
-    <searchBox :hotSearch="hotsearch" @oncatchclick="Search"></searchBox>
+<div class="home " v-if="authLoginFlag" >
+  <div class="top">
+  <div class="search">
+    <searchBox :showbtn="false" :hotSearch="hotsearch" @oncatchclick="Search"></searchBox>
+  </div>
+  </div>
     <div class="Homecard">
     <Homecard @Bookdetail="changeTodetail"></Homecard>
     </div>
@@ -23,6 +27,9 @@
   <div class="loading" v-if="!recommend.length > 0 && !freeread.length > 0 && !hotBook.length > 0 && !category.length > 0 && authLoginFlag">
     <l-loading show="true" type="flash" size="large"></l-loading>
   </div>
+  <view class="cu-tabbar-height">
+      <l-loadmore line="true" show="true" type="end"  end-text="我也是有底线的(end)"></l-loadmore>
+  </view>
 </div>
   
 </template>
@@ -164,8 +171,19 @@ export default {
 </script>
 <style lang='stylus' scoped>
 .home
-  .Homebook
-    margin-top 23px
+  .top
+    background-image: url(https://cdn.nlark.com/yuque/0/2019/png/280373/1570687034669-assets/web-upload/a97bae62-3157-46bf-934e-72f629548f70.png);
+    background-size: 100% 100%;
+    background-repeat no-repeat
+    height: 90px;
+    padding-left 10px
+    padding-top 35px
+    display flex
+    overflow: hidden;
+    position: relative;
+    color:rgb(54, 131, 214);
+    font-weight: 400;
+    text-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
 .loading
   position absolute
   left 50%

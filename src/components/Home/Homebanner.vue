@@ -33,7 +33,7 @@ export default {
 
   methods: {
     getSwipperList () {
-      get('http://neteasemusic.yangxiansheng.top/banner').then((res) => {
+      get('https://music.linkorg.club/banner').then((res) => {
         this.swiperList = res.data.banners
       })
     }
