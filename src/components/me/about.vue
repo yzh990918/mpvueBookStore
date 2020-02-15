@@ -34,7 +34,7 @@
       </view>
     </view>
     <view class="cu-item arrow">
-      <view class="content"  @clcik="ToFavoriate">
+      <view class="content"  @click="ToFavoriate">
         <text class="cuIcon-favorfill text-red" ></text>
         <text class="text-grey">个人收藏</text>
       </view>
@@ -46,7 +46,7 @@
       </view>
     </view>
     <view class="cu-item arrow">
-      <view class="content" @clcik="ToAttention">
+      <view class="content" @click="ToAttention">
         <text class="cuIcon-like text-pink"></text>
         <text class="text-grey">我的关注</text>
       </view>
@@ -58,7 +58,7 @@
       </button>
     </view>
      <view class="cu-item arrow" >
-       <view class="content"  @clcik="ToHonner">
+       <view class="content"  @click="ToHonner">
         <text class="cuIcon-upstage text-yellow"></text>
         <text class="text-grey">荣誉</text>
       </view>
@@ -83,6 +83,7 @@
     </view>
    <l-message content="content"></l-message>
    <van-dialog id="van-dialog"></van-dialog>
+   <!-- <van-popup show="Show" position="bottom"  closeable round custom-style="height: 20%" @close="onClose">该功能开发中,敬请期待</van-popup> -->
   </view>
  
 </scroll-view>
@@ -97,7 +98,8 @@ export default {
   props: [''],
   data () {
     return {
-      userInfo: {}
+      userInfo: {},
+      Show: false
     }
   },
 
@@ -114,6 +116,9 @@ export default {
   },
 
   methods: {
+    onClose () {
+      this.Show = false
+    },
     ToAbout () {
       this.$router.push('/pages/about/main')
     },
@@ -135,17 +140,17 @@ export default {
       }).then(() => {})
     },
     ToHonner () {
-      mpvue.lin.showMessage({
-        content: '暂未获得荣誉感谢支持'
-      })
+      dialog.alert({
+        message: '该功能开发中'
+      }).then(() => {})
     },
     showImage () {
       this.$router.push('/pages/donate/main')
     },
     changeColor () {
-      mpvue.lin.showMessage({
-        content: '开发中...感谢支持'
-      })
+      dialog.alert({
+        message: '该功能开发中'
+      }).then(() => {})
     },
 
     watch: {}

@@ -29,12 +29,14 @@
     beforeMount () {},
 
     mounted () {},
-    previewImage: function () {
-      mpvue.previewImage({
-        urls: this.data.imgList
-      })
+  
+    methods: {
+      previewImage: function () {
+        mpvue.previewImage({
+          urls: this.imgList
+        })
+      }
     },
-    methods: {},
 
     watch: {}
 

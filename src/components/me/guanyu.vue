@@ -12,7 +12,7 @@
     </view>
   </view>
   <view class='margin-xl bg-white padding-xl radius shadow-lg'>
-  <view class='text-center margin-bottom text-lg  text-grey'>关于ColorUI组件库</view>
+  <view class='text-center margin-bottom text-lg  text-grey'>关于东理悦读</view>
   <view class='text-content'>
     <view>Hi！欢迎使用东理悦读！</view>
     <view class='margin-top-sm'>该项目是我在20年1月份开发出来的一款书城小程序，它集成了vant-weapp color-ui lin-ui 采用的是mpvue开发多端小程序框架开发的</view>

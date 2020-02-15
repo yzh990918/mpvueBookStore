@@ -28,7 +28,7 @@
     "van-loading":"../static/dist/loading/index",
     "van-rate":"../static/vant/dist/rate/index",
     "l-message":"../static/dist/message/index",
-    "navBar":"../static/dist/navBar/navBar"
+    "van-popup":"../static/vant/dist/popup/index"
   },
   "tabBar": {
     "color": "#707070",
