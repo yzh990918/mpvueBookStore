@@ -22,34 +22,34 @@
    </view>
   <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius">
     <view class="cu-item arrow" @click="ToAbout" >
-      <navigator class="content" hover-class="none">
+      <view class="content" hover-class="none">
         <text class="cuIcon-info text-blue"></text>
         <text class="text-grey">关于</text>
-      </navigator>
+      </view>
     </view>
       <view class="cu-item arrow"  @click="ToNotice">
-      <navigator class="content" hover-class="none">
-        <text class="cuIcon-notificationfill text-pruple"></text>
+      <view class="content" hover-class="none">
+        <text class="cuIcon-notificationfill text-purple"></text>
         <text class="text-grey">通告</text>
-      </navigator>
+      </view>
     </view>
-    <view class="cu-item arrow" @clcik="ToFavoriate">
-      <navigator class="content"  hover-class="none">
+    <view class="cu-item arrow">
+      <view class="content"  @clcik="ToFavoriate">
         <text class="cuIcon-favorfill text-red" ></text>
         <text class="text-grey">个人收藏</text>
-      </navigator>
+      </view>
     </view>
     <view class="cu-item arrow" @click="Tolog">
-      <navigator class="content"  hover-class="none">
+      <view class="content">
         <text class="cuIcon-formfill text-cyan"></text>
         <text class="text-grey">日志</text>
-      </navigator>
+      </view>
     </view>
-    <view class="cu-item arrow" @clcik="ToAttention">
-      <navigator class="content" hover-class="none">
+    <view class="cu-item arrow">
+      <view class="content" @clcik="ToAttention">
         <text class="cuIcon-like text-pink"></text>
         <text class="text-grey">我的关注</text>
-      </navigator>
+      </view>
     </view>
     <view class="cu-item arrow">
       <button class="cu-btn content" open-type="feedback">
@@ -58,24 +58,31 @@
       </button>
     </view>
      <view class="cu-item arrow" >
-       <navigator class="content" @clcik="ToHonner" hover-class="none">
+       <view class="content"  @clcik="ToHonner">
         <text class="cuIcon-upstage text-yellow"></text>
         <text class="text-grey">荣誉</text>
-      </navigator>
+      </view>
   </view>
   <view class="cu-item arrow" @click="showImage">
-       <navigator class="content" hover-class="none">
+       <view class="content" hover-class="none">
         <text class="cuIcon-vipcard text-brown"></text>
         <text class="text-grey">赞赏作者</text>
-      </navigator>
+      </view>
   </view>
   <view class="cu-item arrow" @click="changeColor">
-       <navigator class="content" hover-class="none">
-        <text class="cuIcon-clothes text-redLight"></text>
+       <view class="content" hover-class="none">
+        <text class="cuIcon-clothes text-pink"></text>
         <text class="text-grey">个性换肤</text>
-      </navigator>
+      </view>
   </view>
+      <view class="cu-item arrow">
+      <button class="cu-btn content" open-type="share">
+        <text class="cuIcon-share text-red"></text>
+        <text class="text-grey">分享</text>
+      </button>
+    </view>
    <l-message content="content"></l-message>
+   <van-dialog id="van-dialog"></van-dialog>
   </view>
  
 </scroll-view>
@@ -83,7 +90,9 @@
 
 <script>
 import {getStorageSync} from '../../api/wechat'
+import dialog from 'vant-weapp/dist/dialog/dialog'
 export default {
+
   name: '',
   props: [''],
   data () {
@@ -115,37 +124,33 @@ export default {
       this.$router.push('/pages/log/main')
     },
     ToFavoriate () {
-      mpvue.lin.showMessage({
-        content: '该功能努力开发中',
-        duration: '3000'
-      })
+      dialog.alert({
+        message: '该功能开发中'
+      }).then(() => {})
     },
     // 关注
     ToAttention () {
-      mpvue.lin.showMessage({
-        content: '该功能努力开发中',
-        duration: '3000'
-      })
+      dialog.alert({
+        message: '该功能开发中'
+      }).then(() => {})
     },
     ToHonner () {
       mpvue.lin.showMessage({
-        content: '暂未获得荣誉',
-        duration: '3000'
+        content: '暂未获得荣誉感谢支持'
       })
     },
     showImage () {
-
+      this.$router.push('/pages/donate/main')
     },
     changeColor () {
       mpvue.lin.showMessage({
-        content: '该功能努力开发中',
-        duration: '3000'
+        content: '开发中...感谢支持'
       })
-    }
-  },
+    },
 
-  watch: {}
+    watch: {}
 
+  }
 }
 </script>
 <style lang='stylus' scoped>

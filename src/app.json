@@ -9,7 +9,8 @@
     "pages/Booklist/main",
     "pages/about/main",
     "pages/log/main",
-    "pages/attention/main"
+    "pages/attention/main",
+    "pages/donate/main"
   ],
   "window": {
     "backgroundTextStyle": "light",

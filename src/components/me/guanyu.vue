@@ -1,46 +1,29 @@
 <template>
-  <div class="about">
-    <div class="bg-a">
-   <img src="https://cdn.nlark.com/yuque/0/2019/jpeg/280373/1553234997376-assets/web-upload/88695068-5581-4eb1-a8b0-55276904b34f.jpeg" 
-   mode="aspectFill"
-   alt="">
-    </div>
-    <div class="info">
-    <div class="avatar">
-        <van-image width="50" fit="cover" height="50" round src="https://i.loli.net/2020/02/14/DYUQ3lbxtOIeV19.jpg"></van-image>
-    <div class="title text-blue">
-      东理悦读 V1.0.1
-    </div>
-    </div>
-    <div class="desc">
-      <div class="desc-t">
-        Hi! 你好呀,欢饮使用东理悦读
-      </div>
-      <div class="desc-m">
-        <div class="desc1">该项目始于20年一月份</div>
-        <div class="desc2">基于mpvue lin-ui vant-weapp color-ui</div>
-        <div class="desc3">
-          是一款高颜值的书城小程序
-        </div>
-      </div>
-      <div class="desc-b">
-        <h2 class="desc-4">
-        书城小程序不收取任何费用
-        </h2>
-        <h2 class="desc-5">
-          希望该小程序能够在你闲暇时分
-        </h2>
-        <h2 class="desc-6">
-          帮助你陶冶情操 查询资料
-        </h2>
-         <h2 class="desc-7">
-          书籍是人类进步的阶梯
-        </h2>
-      </div>
-    </div>
-    </div>
-   
+<div class="about">
+  <div class="header">
+    <img class="background" src="https://cdn.nlark.com/yuque/0/2019/jpeg/280373/1551799188571-assets/web-upload/9d73921e-c4e4-4231-a07a-4caca0d26b64.jpeg" alt="">
+    <img class="logo" src="https://i.loli.net/2020/02/14/DYUQ3lbxtOIeV19.jpg" alt="">
   </div>
+    <view class="cu-bar justify-center bg-white">
+    <view class="action sub-title">
+      <text class="text-xl text-bold text-blue">关于东理悦读</text>
+      <text class="text-ABC text-blue">about</text>
+      <!-- last-child选择器-->
+    </view>
+  </view>
+  <view class='margin-xl bg-white padding-xl radius shadow-lg'>
+  <view class='text-center margin-bottom text-lg  text-grey'>关于ColorUI组件库</view>
+  <view class='text-content'>
+    <view>Hi！欢迎使用东理悦读！</view>
+    <view class='margin-top-sm'>该项目是我在20年1月份开发出来的一款书城小程序，它集成了vant-weapp color-ui lin-ui 采用的是mpvue开发多端小程序框架开发的</view>
+    <view class='margin-top-sm'>小程序是免费的，不收取任何费用，如果这个书城有帮到你，或者你觉得很赞，可以在GitHub里扫描赞赏码支持一下！</view>
+    <view class='margin-top-sm'>书城包含了首页,推荐,轮播,免费热读,热门更新,图书分类,图书搜索,图书列表,书架等功能</view>
+    <view class='margin-top-sm'>更多功能敬请期待！</view>
+  </view>
+</view>
+
+</div>
+   
 </template>
 
 <script>
@@ -70,27 +53,29 @@
 </script>
 <style lang='stylus' scoped>
 .about
-  padding 40px 0 20px 20px
-.bg-a
-  position fixed
-  z-index 1
-  width 100%
-  height 100%
-  top 0 
-  bottom 0
-  left 0
-  right 0
-.info
-  z-index 4
-  display flex
-  flex-direction column
-  .avatar
-    display flex
-    flex-direction column
-    .title
-      margin-top 15px
-      font-size 20px
-      line-height 25px
-      text-shadow: 0 0 3px rgba(0, 0, 0, 0.3)
-
+  .header
+    position: relative;
+    width: 100%;
+    height: 400rpx;
+    text-align: center;
+    box-sizing: border-box;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .background
+      position absolute
+      top 0
+      left 0
+      right 0
+      width 100%
+      height 100%
+      z-index 1
+    .logo
+      position relative
+      width 80px
+      height 80px
+      border-radius 50%
+      z-index 3
+      opacity .9
 </style>
