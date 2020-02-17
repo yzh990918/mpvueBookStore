@@ -3,7 +3,7 @@
   <view class="UCenter-bg">
     <image src="https://i.loli.net/2020/02/14/DYUQ3lbxtOIeV19.jpg" class="png" mode="widthFix"></image>
     <view class="text-xl title">东理悦读
-      <text class="text-df">v1.0</text>
+      <text class="text-df">v1.0.1</text>
     </view>
     <image src="https://raw.githubusercontent.com/weilanwl/ColorUI/master/demo/images/wave.gif" mode="scaleToFill" class="gif-wave"></image>
   </view>

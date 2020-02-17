@@ -56,7 +56,9 @@ page {
 	--blackShadow: rgba(26, 26, 26, 0.2);
 
 	background-color: var(--ghostWhite);
-	font-size: 28rpx;
+  font-size: 28rpx;
+  height: 100%;
+  width: 100%;
 	font-family: Helvetica Neue, Helvetica, sans-serif;
 }
 

@@ -1,7 +1,7 @@
 <template>
   <div class="home-book" :class="linearStl" ref="homeBook">
     <div class="home-book-header"
-         v-if="showTitle">{{title}}</div>
+        >图书分类</div>
     <div class="home-book-content">
       <div class="home-book-row"
            v-for="(item,index) in bookData"
@@ -56,14 +56,17 @@
       </div>
     </div>
     <div class="home-book-footer"
-         v-if="showBtn">
+       >
       <l-button shape="semicircle"
       @click="onMoreclick"
                 color="#ffffff"
                 height="82"
                 size="large"
-                plain="true">{{btnText}}</l-button>
+                plain="true">查看全部</l-button>
     </div>
+      <view class="cu-tabbar-height">
+      <l-loadmore line="true" show="true" type="end"  end-text="我也是有底线的(end)"></l-loadmore>
+  </view>
   </div>
 </template>
 

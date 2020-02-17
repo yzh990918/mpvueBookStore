@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="index">
 <div class="home" @click="showMessage">
   <div class="top">
   <div class="search">
@@ -10,25 +10,22 @@
     <Homecard @Bookdetail="changeTodetail"></Homecard>
     </div>
     <Homebanner></Homebanner>
-    <div class="Homebook">
-        <Homebook @ToDetail="Todetail" @onMoreclick="LoadingMore('recommend')" linearBg  mode="row" :row="1" :col="3" :data="recommend"  title="为你推荐" btnText="换一批"></Homebook>
-    </div>
-     <div class="Homebook">
-        <Homebook @ToDetail="Todetail" @onMoreclick="LoadingMore('freeRead')"   mode="col" :row="2" :col="2" :data="freeread"  title="免费阅读" btnText="换一批"></Homebook>
-    </div>
-     <div class="Homebook">
-        <Homebook @ToDetail="Todetail" @onMoreclick="LoadingMore('hotRead')"  mode="row" :row="1" :col="4" :data="hotBook"  title="当前最热" btnText="换一批"></Homebook>
-    </div>
-     <div class="Homebook">
-        <Homebook  @onMoreclick="Totype" :row="3" :col="2" :data="category"  title="图书分类" btnText="查看全部"></Homebook>
-    </div>
+   <div class="book-wrapper">
+      <HomebookR @ToDetail="Todetail" @onMoreclick="LoadingMore('recommend')" linearBg  mode="row" :row="1" :col="3" :data="recommend"   btnText="换一批"></HomebookR>
+   </div>
+   <div class="book-wrapper">
+      <HomebookF @ToDetail="Todetail" @onMoreclick="LoadingMore('freeRead')"   mode="col" :row="2" :col="2" :data="freeread"   btnText="换一批"></HomebookF>
+   </div>
+   <div class="book-wrapper">
+      <HomebookH @ToDetail="Todetail" @onMoreclick="LoadingMore('hotRead')"  mode="row" :row="1" :col="4" :data="hotBook"  btnText="换一批"></HomebookH>
+   </div>
+   <div class="book-wrapper">
+        <HomebookC  @onMoreclick="Totype" :row="3" :col="2" :data="category"  btnText="查看全部"></HomebookC>
+   </div>
   </div>
   <div class="loading" v-if="!recommend.length > 0 && !freeread.length > 0 && !hotBook.length > 0 && !category.length > 0 ">
     <l-loading show="true" type="flash" size="large"></l-loading>
   </div>
-  <view class="cu-tabbar-height">
-      <l-loadmore line="true" show="true" type="end"  end-text="我也是有底线的(end)"></l-loadmore>
-  </view>
   <van-toast id="van-toast"/>
 </div>
   
@@ -38,7 +35,10 @@ import Toast from 'vant-weapp/dist/toast/toast'
 import searchBox from '../../components/base/search-box/search-box'
 import Homecard from '../../components/Home/Homecard'
 import Homebanner from '../../components/Home/Homebanner'
-import Homebook from '../../components/Home/Homebook'
+import HomebookC from '../../components/Home/HomebookC'
+import HomebookF from '../../components/Home/HomebookF'
+import HomebookH from '../../components/Home/HomebookH'
+import HomebookR from '../../components/Home/HomebookR'
 import {getHomeData, getrecommend, getfreeRead, gethotBook} from '../../api/index.js'
 import {getStorageSync} from '../../api/wechat'
 
@@ -53,10 +53,11 @@ export default {
       freeread: [],
       hotBook: [],
       category: [],
-      cardlist: []
+      cardlist: [],
+      Rtitle: '为你推荐'
     }
   },
-  components: {searchBox, Homecard, Homebanner, Homebook},
+  components: {searchBox, Homecard, Homebanner, HomebookC, HomebookR, HomebookH, HomebookF},
   created () {},
 
   computed: {},
@@ -66,7 +67,6 @@ export default {
   onLoad () {
     this.openId = getStorageSync('openId')
     this.getHomeInfo()
-    // this.getsetting()
   },
   onShow () {
     this.getInfo()
@@ -84,6 +84,7 @@ export default {
       if (userflag && !this.hotBook.length) {
         setTimeout(() => {
           this.getHomeInfo()
+          this.Rtitle = '推荐'
         }, 300)
       } else {
       }
@@ -187,7 +188,7 @@ export default {
     showMessage () {
       const userInfo = getStorageSync('usnerInfo')
       if (!userInfo) {
-        Toast.fail('需要登录')
+        Toast.fail('需要登录,才能体验完整功能')
       }
     }
   },
@@ -198,6 +199,11 @@ export default {
 </script>
 <style lang='stylus' scoped>
 .home
+  position absolute
+  left 0
+  bottom 0
+  width 100%
+  height 100%
   .top
     background-image: url(https://cdn.nlark.com/yuque/0/2019/png/280373/1570687034669-assets/web-upload/a97bae62-3157-46bf-934e-72f629548f70.png);
     background-size: 100% 100%;
@@ -211,6 +217,8 @@ export default {
     color:rgb(54, 131, 214);
     font-weight: 400;
     text-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+  .book-wrapper
+    margin-top 25px
 .loading
   position absolute
   left 50%

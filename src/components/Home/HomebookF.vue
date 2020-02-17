@@ -1,7 +1,7 @@
 <template>
   <div class="home-book" :class="linearStl" ref="homeBook">
     <div class="home-book-header"
-         v-if="showTitle">{{title}}</div>
+       >免费热读</div>
     <div class="home-book-content">
       <div class="home-book-row"
            v-for="(item,index) in bookData"
@@ -56,13 +56,13 @@
       </div>
     </div>
     <div class="home-book-footer"
-         v-if="showBtn">
+        >
       <l-button shape="semicircle"
       @click="onMoreclick"
                 color="#ffffff"
                 height="82"
                 size="large"
-                plain="true">{{btnText}}</l-button>
+                plain="true">换一批</l-button>
     </div>
   </div>
 </template>
