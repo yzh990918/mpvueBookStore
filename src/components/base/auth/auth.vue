@@ -8,10 +8,12 @@
         <div class="sub-title">登陆东理悦读</div>
         <div class="desc">更多好书等你阅读</div>
       </div>
-      <button class="login-button"
+       <button class="login-button"
      @getuserinfo="getUserInfo"
       open-type="getUserInfo"
       >授权登录</button>
+      <button @click="cancel" class="cancel-button"
+      >取消登录</button>
     </div>
     
   </div>
@@ -40,6 +42,9 @@ export default {
   methods: {
     getUserInfo () {
       this.$emit('getUserInfo')
+    },
+    cancel () {
+      this.$emit('cancel')
     }
   },
 
@@ -86,9 +91,13 @@ export default {
         color #333333
     .login-button
       position absolute
+      bottom 40px
+      color #0081ff
+      width 100%
+    .cancel-button
+      position absolute
       bottom 0
       width 100%
-      background-image: linear-gradient(90deg, #1EA3F5 0%, #0F87FC 100%);
+      color #1cbbb4
       border-radius: 0 0 18px 18px;
-
 </style>

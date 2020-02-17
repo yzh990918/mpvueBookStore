@@ -71,13 +71,29 @@ export default {
   computed: {},
 
   beforeMount () {},
-
-  mounted () {
-    this.getshelf()
-    this.getUserInfo()
+  onShow () {
+    this.getInfo()
   },
-
+  onLoad () {
+    this.getUserInfo()
+    this.getshelf()
+  },
   methods: {
+    getInfo () {
+      let userflag = false
+      const userInfo = getStorageSync('usnerInfo')
+      if (userInfo !== undefined) {
+        userflag = true
+      } else {
+        userflag = false
+      }
+      // 用户授权了 切换到首页加载数据
+      if (userflag && !this.shelf.length) {
+        this.getUserInfo()
+        this.getshelf()
+      } else {
+      }
+    },
     getUserInfo () {
       const userInfo = getStorageSync('usnerInfo')
       const {nickName, avatarUrl} = userInfo
@@ -86,7 +102,8 @@ export default {
       console.log(this.avatar, this.nickName)
     },
     getshelf () {
-      getHomeData({openId: '1234'}).then(res => {
+      const openId = getStorageSync('openId')
+      getHomeData({openId}).then(res => {
         this.shelf = res.data.data.shelf
       })
     },

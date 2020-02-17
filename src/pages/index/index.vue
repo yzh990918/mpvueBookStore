@@ -1,6 +1,6 @@
 <template>
 <div>
-<div class="home " v-if="authLoginFlag" >
+<div class="home" @click="showMessage">
   <div class="top">
   <div class="search">
     <searchBox :showbtn="false" :hotSearch="hotsearch" @oncatchclick="Search"></searchBox>
@@ -23,24 +23,25 @@
         <Homebook  @onMoreclick="Totype" :row="3" :col="2" :data="category"  title="图书分类" btnText="查看全部"></Homebook>
     </div>
   </div>
-  <auth v-if="!authLoginFlag" @getUserInfo="init"></auth>
-  <div class="loading" v-if="!recommend.length > 0 && !freeread.length > 0 && !hotBook.length > 0 && !category.length > 0 && authLoginFlag">
+  <div class="loading" v-if="!recommend.length > 0 && !freeread.length > 0 && !hotBook.length > 0 && !category.length > 0 ">
     <l-loading show="true" type="flash" size="large"></l-loading>
   </div>
   <view class="cu-tabbar-height">
       <l-loadmore line="true" show="true" type="end"  end-text="我也是有底线的(end)"></l-loadmore>
   </view>
+  <van-toast id="van-toast"/>
 </div>
   
 </template>
 <script>
+import Toast from 'vant-weapp/dist/toast/toast'
 import searchBox from '../../components/base/search-box/search-box'
 import Homecard from '../../components/Home/Homecard'
 import Homebanner from '../../components/Home/Homebanner'
 import Homebook from '../../components/Home/Homebook'
-import {getHomeData, getrecommend, getfreeRead, gethotBook, register} from '../../api/index.js'
-import {getsetting, getUserInformation, setStorageSync, getStorageSync, getOpenId} from '../../api/wechat'
-import auth from '../../components/base/auth/auth'
+import {getHomeData, getrecommend, getfreeRead, gethotBook} from '../../api/index.js'
+import {getStorageSync} from '../../api/wechat'
+
 export default {
   name: '',
   props: [''],
@@ -52,25 +53,45 @@ export default {
       freeread: [],
       hotBook: [],
       category: [],
-      cardlist: [],
-      authLoginFlag: true
+      cardlist: []
     }
   },
-  components: {searchBox, Homecard, Homebanner, Homebook, auth},
+  components: {searchBox, Homecard, Homebanner, Homebook},
   created () {},
 
   computed: {},
 
   beforeMount () {},
 
-  mounted () {
-    // this.getHomeInfo()
+  onLoad () {
+    this.openId = getStorageSync('openId')
+    this.getHomeInfo()
     // this.getsetting()
-    this.init()
+  },
+  onShow () {
+    this.getInfo()
   },
 
   methods: {
-    getHomeInfo (openId) {
+    getInfo () {
+      let userflag = false
+      const userInfo = getStorageSync('usnerInfo')
+      if (userInfo !== undefined) {
+        userflag = true
+      } else {
+        userflag = false
+      }
+      if (userflag && !this.hotBook.length) {
+        setTimeout(() => {
+          this.getHomeInfo()
+        }, 300)
+      } else {
+      }
+
+      console.log(userflag && !this.category.length)
+    },
+    getHomeInfo () {
+      const openId = getStorageSync('openId')
       getHomeData({openId}).then((res) => {
         const {
           data: {
@@ -108,35 +129,35 @@ export default {
           break
       }
     },
-    getsetting () {
-      getsetting('userInfo', () => {
-        this.authLoginFlag = true
-        this.getUserInfo()
-      }, () => {
-        this.authLoginFlag = false
-      })
-    },
-    getUserInfo () {
-      getUserInformation((userInfo) => {
-        console.log(userInfo)
-        setStorageSync('usnerInfo', userInfo)
-        const openId = getStorageSync('openId')
-        if (!openId || openId.length === 0) {
-          getOpenId()
-        } else {
-          // 已获得openid的回调执行
-          this.getHomeInfo(openId)
-          register(openId, userInfo)
-        }
-      },
-      () => {
-        console.log('failed')
-      }
-      )
-    },
-    init () {
-      this.getsetting()
-    },
+    // getsetting () {
+    //   getsetting('userInfo', () => {
+    //     this.authLoginFlag = true
+    //     this.getUserInfo()
+    //   }, () => {
+    //     this.authLoginFlag = false
+    //   })
+    // },
+    // getUserInfo () {
+    //   getUserInformation((userInfo) => {
+    //     console.log(userInfo)
+    //     setStorageSync('usnerInfo', userInfo)
+    //     const openId = getStorageSync('openId')
+    //     if (!openId || openId.length === 0) {
+    //       getOpenId()
+    //     } else {
+    //       // 已获得openid的回调执行
+    //       this.getHomeInfo(openId)
+    //       register(openId, userInfo)
+    //     }
+    //   },
+    //   () => {
+    //     console.log('failed')
+    //   }
+    //   )
+    // },
+    // init () {
+    //   this.getsetting()
+    // },
     Search () {
       this.$router.push('/pages/Search/main')
     },
@@ -162,6 +183,12 @@ export default {
           fileName
         }
       })
+    },
+    showMessage () {
+      const userInfo = getStorageSync('usnerInfo')
+      if (!userInfo) {
+        Toast.fail('需要登录')
+      }
     }
   },
 

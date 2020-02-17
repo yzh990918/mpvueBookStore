@@ -8,7 +8,12 @@
     <image src="https://raw.githubusercontent.com/weilanwl/ColorUI/master/demo/images/wave.gif" mode="scaleToFill" class="gif-wave"></image>
   </view>
    <view class="cu-list menu margin-bottom-xl shadow-lg radius">
-    <view class="cu-item">
+      <view class="us-item" v-if="showlog">
+<view class="cu-bar btn-group">
+<button @getuserinfo="getUserInfo" open-type="getUserInfo" class="cu-btn text-blue line-blue shadow">绑定账号</button>
+  </view>
+    </view>
+    <view class="cu-item" v-if="showInfo">
       <view class="content user">
          <div class="cu-avatar radius lg avatar " ref="avatar" :style="{backgroundImage : 'url'+'('+userInfo.avatarUrl+')'}">
           <view class="cu-tag badge" :class="userInfo.gender===2 ? 'cuIcon-female bg-pink':'cuIcon-male bg-blue'" ></view>
@@ -90,8 +95,11 @@
 </template>
 
 <script>
-import {getStorageSync} from '../../api/wechat'
+import {getStorageSync, getUserInformation, setStorageSync, getOpenId, getsetting} from '../../api/wechat'
+import {register} from '../../api/index'
 import dialog from 'vant-weapp/dist/dialog/dialog'
+import auth from '../../components/base/auth/auth'
+
 export default {
 
   name: '',
@@ -99,11 +107,15 @@ export default {
   data () {
     return {
       userInfo: {},
-      Show: false
+      Show: false,
+      authLoginFlag: false,
+      loginflag: false,
+      showlog: true,
+      showInfo: false
     }
   },
 
-  components: {},
+  components: {auth},
   created () {},
 
   computed: {
@@ -112,10 +124,18 @@ export default {
   beforeMount () {},
 
   mounted () {
+    this.IsLogined()
+    this.showlog = false
+    this.showInfo = true
     this.userInfo = getStorageSync('usnerInfo')
   },
-
   methods: {
+    cancelLogin () {
+      this.authLoginFlag = false
+    },
+    showauth () {
+      this.authLoginFlag = true
+    },
     onClose () {
       this.Show = false
     },
@@ -152,10 +172,40 @@ export default {
         message: '该功能开发中'
       }).then(() => {})
     },
-
-    watch: {}
-
+    getUserInfo () {
+      this.getUInfo()
+    },
+    getUInfo () {
+      getUserInformation((userInfo) => {
+        setStorageSync('usnerInfo', userInfo)
+        const openId = getStorageSync('openId')
+        if (!openId || openId.length === 0) {
+          getOpenId()
+        } else {
+          // 已获得openid的回调执行
+          this.showInfo = true
+          this.showlog = false
+          console.log(this.showlog)
+          this.userInfo = getStorageSync('usnerInfo')
+          register(openId, userInfo)
+        }
+      },
+      () => {
+        console.log('failed')
+      }
+      )
+    },
+    IsLogined () {
+      getsetting('userInfo', () => {
+        this.showInfo = true
+        this.showlog = false
+      }, () => {
+        this.showInfo = false
+        this.showlog = true
+      })
+    }
   }
+
 }
 </script>
 <style lang='stylus' scoped>
