@@ -66,7 +66,8 @@ export default {
 
   onLoad () {
     this.openId = getStorageSync('openId')
-    this.getHomeInfo()
+    let shortid = '1234'
+    this.getHomeInfo(shortid)
   },
   onShow () {
     this.getInfo()
@@ -75,24 +76,22 @@ export default {
   methods: {
     getInfo () {
       let userflag = false
+      const Idflag = getStorageSync('openId')
       const userInfo = getStorageSync('usnerInfo')
       if (userInfo !== undefined) {
         userflag = true
       } else {
         userflag = false
       }
-      if (userflag && !this.hotBook.length) {
+      if (userflag && !this.hotBook.length && Idflag !== '1234') {
         setTimeout(() => {
           this.getHomeInfo()
           this.Rtitle = '推荐'
         }, 300)
       } else {
       }
-
-      console.log(userflag && !this.category.length)
     },
-    getHomeInfo () {
-      const openId = getStorageSync('openId')
+    getHomeInfo (openId) {
       getHomeData({openId}).then((res) => {
         const {
           data: {

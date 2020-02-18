@@ -3,6 +3,9 @@
 <div class="homebook">
    <Homebook :row="category.length / 2" :col="2" :data="category" :showTitle="false" :showBtn="false" ></Homebook>
 </div>  
+<div class="loading" v-if="!category.length">
+  <l-loading show="true" full-screen="true" size="large" type="change"></l-loading>
+</div>
 </div>
 </template>
 
@@ -24,7 +27,7 @@ export default {
 
   beforeMount () {},
 
-  mounted () {
+  onLoad () {
     getcatalogueList().then((res) => {
       this.category = res.data.data
     })

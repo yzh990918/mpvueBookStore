@@ -29,7 +29,8 @@
     "van-rate":"../static/vant/dist/rate/index",
     "l-message":"../static/dist/message/index",
     "van-popup":"../static/vant/dist/popup/index",
-    "van-toast":"../static/vant/dist/toast/index"
+    "van-toast":"../static/vant/dist/toast/index",
+    "l-toast":"../static/dist/toast/index"
   },
   "tabBar": {
     "color": "#707070",

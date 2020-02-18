@@ -2,19 +2,19 @@
 <div class="about">
   <div class="header">
     <img class="background" src="https://cdn.nlark.com/yuque/0/2019/jpeg/280373/1551799188571-assets/web-upload/9d73921e-c4e4-4231-a07a-4caca0d26b64.jpeg" alt="">
-    <img class="logo" src="https://i.loli.net/2020/02/14/DYUQ3lbxtOIeV19.jpg" alt="">
+    <img class="logo" src="https://i.loli.net/2020/02/17/qKnZz13REVmvP6x.png" alt="">
   </div>
     <view class="cu-bar justify-center bg-white">
     <view class="action sub-title">
-      <text class="text-xl text-bold text-blue">关于东理悦读</text>
+      <text class="text-xl text-bold text-blue">简介</text>
       <text class="text-ABC text-blue">about</text>
       <!-- last-child选择器-->
     </view>
   </view>
   <view class='margin-xl bg-white padding-xl radius shadow-lg'>
-  <view class='text-center margin-bottom text-lg  text-grey'>关于东理悦读</view>
+  <view class='text-center margin-bottom text-lg  text-grey'>关于悦读ECUT</view>
   <view class='text-content'>
-    <view>Hi！欢迎使用东理悦读！</view>
+    <view>Hi！欢迎使用悦读ECUT！</view>
     <view class='margin-top-sm'>该项目是我(杨志豪)在20年1月份开发出来的一款书城小程序，它集成了vant-weapp color-ui lin-ui 采用的是mpvue开发多端小程序框架开发的，由衷感谢这些ui框架和mpvue框架</view>
      <view class='margin-top-sm'>项目需要您绑定一下账号授权,不然书架和阅读功能可能无法使用</view>
     <view class='margin-top-sm'>小程序是免费的，不收取任何费用，如果这个书城有帮到你，或者你觉得很赞，可以在GitHub里扫描赞赏码支持一下！</view>

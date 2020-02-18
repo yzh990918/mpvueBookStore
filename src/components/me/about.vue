@@ -1,29 +1,30 @@
 <template>
  <scroll-view scroll-y class="scrollPage">
   <view class="UCenter-bg">
-    <image src="https://i.loli.net/2020/02/14/DYUQ3lbxtOIeV19.jpg" class="png" mode="widthFix"></image>
+    <image src="https://i.loli.net/2020/02/17/qKnZz13REVmvP6x.png" class="png" mode="widthFix"></image>
     <view class="text-xl title">东理悦读
       <text class="text-df">v1.0.1</text>
     </view>
     <image src="https://raw.githubusercontent.com/weilanwl/ColorUI/master/demo/images/wave.gif" mode="scaleToFill" class="gif-wave"></image>
   </view>
    <view class="cu-list menu margin-bottom-xl shadow-lg radius">
-      <view class="us-item" v-if="showlog">
-<view class="cu-bar btn-group">
-<button @getuserinfo="getUserInfo" open-type="getUserInfo" class="cu-btn text-blue line-blue shadow">绑定账号</button>
-  </view>
-    </view>
-    <view class="cu-item" v-if="showInfo">
-      <view class="content user">
-         <div class="cu-avatar radius lg avatar " ref="avatar" :style="{backgroundImage : 'url'+'('+userInfo.avatarUrl+')'}">
-          <view class="cu-tag badge" :class="userInfo.gender===2 ? 'cuIcon-female bg-pink':'cuIcon-male bg-blue'" ></view>
-        </div>
-        <div class="userinfo">
-          <div class="userName">{{userInfo.nickName}}</div>
-          <div class="desc text-grey" >阅读等级:书虫一枚</div>
-        </div>
-      </view>
-    </view>
+        <view class="cu-item" v-if="!showlog">
+          <view class="content user">
+            <div class="cu-avatar radius lg avatar " ref="avatar" :style="{backgroundImage : 'url'+'('+userInformation.avatarUrl+')'}">
+              <view class="cu-tag badge" :class="userInformation.gender===2 ? 'cuIcon-female bg-pink':'cuIcon-male bg-blue'" ></view>
+            </div>
+            <div class="userinfo">
+              <div class="userName">{{userInformation.nickName}}</div>
+              <div class="desc text-grey" >阅读等级:书虫一枚</div>
+            </div>
+          </view>
+        </view>
+          <view class="us-item" v-if="showlog">
+            <view class="cu-bar btn-group">
+            <button @getuserinfo="getUserInfo" open-type="getUserInfo" class="cu-btn text-blue line-blue shadow">绑定账号</button>
+              </view>
+              </view>
+              <l-toast/>
    </view>
   <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius">
     <view class="cu-item arrow" @click="ToAbout" >
@@ -95,7 +96,7 @@
 </template>
 
 <script>
-import {getStorageSync, getUserInformation, setStorageSync, getOpenId, getsetting} from '../../api/wechat'
+import {getStorageSync, getUserInformation, setStorageSync, getOpenId} from '../../api/wechat'
 import {register} from '../../api/index'
 import dialog from 'vant-weapp/dist/dialog/dialog'
 import auth from '../../components/base/auth/auth'
@@ -106,12 +107,11 @@ export default {
   props: [''],
   data () {
     return {
-      userInfo: {},
+      userInformation: {},
       Show: false,
       authLoginFlag: false,
       loginflag: false,
-      showlog: true,
-      showInfo: false
+      showlog: true
     }
   },
 
@@ -122,22 +122,16 @@ export default {
   },
 
   beforeMount () {},
-
-  mounted () {
+  onShow () {
     this.IsLogined()
-    this.showlog = false
-    this.showInfo = true
-    this.userInfo = getStorageSync('usnerInfo')
+  },
+
+  onLoad () {
+    this.IsLogined()
   },
   methods: {
-    cancelLogin () {
-      this.authLoginFlag = false
-    },
-    showauth () {
-      this.authLoginFlag = true
-    },
     onClose () {
-      this.Show = false
+      this.showlog = false
     },
     ToAbout () {
       this.$router.push('/pages/about/main')
@@ -177,16 +171,20 @@ export default {
     },
     getUInfo () {
       getUserInformation((userInfo) => {
+        setTimeout(() => {
+          this.showlog = false
+          this.userInformation = getStorageSync('usnerInfo')
+          mpvue.lin.showToast({
+            title: '登录成功',
+            icon: 'success'
+          })
+        }, 50)
         setStorageSync('usnerInfo', userInfo)
         const openId = getStorageSync('openId')
         if (!openId || openId.length === 0) {
           getOpenId()
         } else {
           // 已获得openid的回调执行
-          this.showInfo = true
-          this.showlog = false
-          console.log(this.showlog)
-          this.userInfo = getStorageSync('usnerInfo')
           register(openId, userInfo)
         }
       },
@@ -196,13 +194,17 @@ export default {
       )
     },
     IsLogined () {
-      getsetting('userInfo', () => {
-        this.showInfo = true
-        this.showlog = false
-      }, () => {
-        this.showInfo = false
-        this.showlog = true
-      })
+      let login = false
+      let userInfo = getStorageSync('openId')
+      if (userInfo !== '') {
+        login = false
+      } else {
+        login = true
+      }
+      this.showlog = login
+      console.log(this.showlog)
+      // console.log(this.showlog)
+      this.userInformation = getStorageSync('usnerInfo')
     }
   }
 

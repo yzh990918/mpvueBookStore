@@ -2,7 +2,7 @@
   <div class="homecard">
     <div class="homecard-wrapper">
       <div class="user-info">
-        <div class="avatar">
+        <div class="avatar" v-if="loginflag">
         <van-image
         :src="avatar"
         round
@@ -12,14 +12,32 @@
        height="20"
         ></van-image>
         </div>
-         <span class="nickName">{{nickName}}</span>
-      <span class="shelf-desc">书架共有三本好书</span>
+          <div class="avatar" v-if="!loginflag">
+        <van-image
+        src="https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif?imageView2/1/w/80/h/80"
+        round
+        lazy-load
+       fit="cover"
+       width="20"
+       height="20"
+        ></van-image>
+        </div>
+         <span v-if="loginflag" class="nickName">{{nickName}}</span>
+                <span v-else class="nickName">游客登录</span>
+      <span class="shelf-desc" v-if="loginflag">书架共有三本好书</span>
+           <span class="shelf-desc" v-else>亲亲需要您登录哦</span>
       <div class="split"></div>
       <span class="shelf-desc right">特别精选</span>
       </div>
       <div class="book-info">
-        <div class="book-img-wrapper">
+        <div class="book-img-wrapper" v-if="loginflag">
           <div @click="ToBookdeatil(item)" class="img-wrapper" v-for="(item,index) of shelf" :key="index">
+            <van-image fit="cover" width="72"  height="101" lazy-load  :src="item.cover">
+          </van-image>
+          </div>
+        </div>
+         <div class="book-img-wrapper" v-else>
+          <div @click="ToBookdeatil(item)" class="img-wrapper" v-for="(item,index) of mockshelflist" :key="index">
             <van-image fit="cover" width="72"  height="101" lazy-load  :src="item.cover">
           </van-image>
           </div>
@@ -60,33 +78,91 @@ export default {
     return {
       shelf: [],
       avatar: '',
-      nickName: ''
+      nickName: '',
+      loginflag: true,
+      testflag: true,
+      mockshelflist: [
+        {
+          'id': 67,
+          'fileName': '2018_Book_Nanoinformatics',
+          'cover': 'https://www.youbaobao.xyz/book/res/img/MaterialsScience/978-981-10-7617-6_CoverFigure.jpg',
+          'title': 'Nanoinformatics',
+          'author': 'Isao Tanaka',
+          'publisher': 'Springer Singapore',
+          'bookId': '2018_Book_Nanoinformatics',
+          'category': 15,
+          'categoryText': 'MaterialsScience',
+          'language': 'en',
+          'rootFile': 'OEBPS/package.opf'
+        },
+        {
+          'id': 38,
+          'fileName': '2018_Book_DesigningSustainableTechnologi',
+          'cover': 'https://www.youbaobao.xyz/book/res/img/Environment/978-3-319-66981-6_CoverFigure.jpg',
+          'title': 'Designing Sustainable Technologies, Products and Policies',
+          'author': 'Enrico Benetto',
+          'publisher': 'Springer International Publishing',
+          'bookId': '2018_Book_DesigningSustainableTechnologi',
+          'category': 6,
+          'categoryText': 'Environment',
+          'language': 'en',
+          'rootFile': 'OEBPS/package.opf'
+        },
+        {
+          'id': 12,
+          'fileName': '2018_Book_RESTARTSustainableBusinessMode',
+          'cover': 'https://www.youbaobao.xyz/book/res/img/BusinessandManagement/978-3-319-91971-3_CoverFigure.jpg',
+          'title': 'RESTART Sustainable Business Model Innovation',
+          'author': 'Sveinung Jørgensen',
+          'publisher': 'Springer International Publishing',
+          'bookId': '2018_Book_RESTARTSustainableBusinessMode',
+          'category': 13,
+          'categoryText': 'BusinessandManagement',
+          'language': 'en',
+          'rootFile': 'OEBPS/package.opf'
+        }
+      ]
     }
   },
 
   components: {imageview},
-  created () {
-  },
 
   computed: {},
-
+  beforeCreate () {
+  },
   beforeMount () {},
   onShow () {
     this.getInfo()
   },
   onLoad () {
+    this.ISlogin()
     this.getUserInfo()
     this.getshelf()
   },
   methods: {
+    ISlogin () {
+      let login = false
+      const userInfo = getStorageSync('usnerInfo')
+      if (userInfo !== undefined && userInfo.nickName) {
+        login = true
+      } else {
+        login = false
+      }
+      this.loginflag = login
+    },
     getInfo () {
       let userflag = false
+      let login = false
       const userInfo = getStorageSync('usnerInfo')
-      if (userInfo !== undefined) {
+      if (userInfo !== undefined && userInfo.nickName) {
         userflag = true
+        login = true
       } else {
         userflag = false
+        login = false
       }
+      this.loginflag = login
+      console.log(this.loginflag)
       // 用户授权了 切换到首页加载数据
       if (userflag && !this.shelf.length) {
         this.getUserInfo()
@@ -99,7 +175,6 @@ export default {
       const {nickName, avatarUrl} = userInfo
       this.avatar = avatarUrl
       this.nickName = nickName
-      console.log(this.avatar, this.nickName)
     },
     getshelf () {
       const openId = getStorageSync('openId')

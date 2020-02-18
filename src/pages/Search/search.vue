@@ -98,6 +98,7 @@ export default {
     this.query = ''
   },
   // todo: 4.阅读器跳转 5.书架开发 6.个人中心开发
+  // error: 登录时需要点击两下按钮才能加载数据
   methods: {
     addInput (item) {
       this.$refs.box.setvalue(item)
