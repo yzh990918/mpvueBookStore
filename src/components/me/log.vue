@@ -21,6 +21,21 @@
       </view>
     </view>   
   </view>
+   <view class="cu-item text-blue">
+    <view class="bg-blue content shadow">
+      <view class="cu-capsule radius">
+        <view class="cu-tag bg-white text-blue">v1.0.1</view>
+        <view class="cu-tag line-white">2020-3-14</view>
+      </view>
+      <view class="margin-top-sm text-content">
+        <view>1.添加通知页面</view>
+        <view>2.添加荣誉区 开发者页面</view>
+        <view>3.添加首页头像图标</view>
+        <view>即将上线:电子阅读器</view>
+        <view>即将上线:音乐播放器</view>
+      </view>
+    </view>   
+  </view>
 </view>
 </template>
 

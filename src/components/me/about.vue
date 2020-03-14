@@ -143,20 +143,14 @@ export default {
       this.$router.push('/pages/log/main')
     },
     ToFavoriate () {
-      dialog.alert({
-        message: '该功能开发中'
-      }).then(() => {})
+      this.$router.push('/pages/favor/main')
     },
     // 关注
     ToAttention () {
-      dialog.alert({
-        message: '该功能开发中'
-      }).then(() => {})
+      this.$router.push('/pages/guanzhu/main')
     },
     ToHonner () {
-      dialog.alert({
-        message: '该功能开发中'
-      }).then(() => {})
+      this.$router.push('/pages/honor/main')
     },
     showImage () {
       this.$router.push('/pages/donate/main')

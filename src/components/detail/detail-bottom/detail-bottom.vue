@@ -11,7 +11,7 @@
       <l-button 
       @click="readBook"
       width="320" height="80"
-      l-class="read" shape="circle">查看书评</l-button>
+      l-class="read" shape="circle">立即阅读</l-button>
     </div>
   </div>
 </template>

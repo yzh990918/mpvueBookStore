@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "@vant/weapp": "^1.0.5",
+    "epubjs": "^0.3.71",
     "flyio": "^0.6.14",
     "mpvue": "^2.0.0",
     "mpvue-router-patch": "^2.0.0",

@@ -40,7 +40,8 @@ export default {
       rankAvg: 0,
       rateValue: 0,
       contents: [],
-      isOnShelf: false
+      isOnShelf: false,
+      title: ''
     }
   },
 
@@ -61,7 +62,6 @@ export default {
       this.contents = res.data.data
     })
   },
-
   methods: {
     getDetail () {
       getBookDeatil({
@@ -69,9 +69,9 @@ export default {
         openId: this.openId
       }).then((res) => {
         this.readers = res.data.data.readers
-        console.log(this.readers)
-        const { readerNum, rankNum, rankAvg } = res.data.data
+        const { readerNum, rankNum, rankAvg, title } = res.data.data
         this.data = res.data.data
+        this.title = title
         this.readerNum = readerNum
         this.rankNum = rankNum
         this.rankAvg = rankAvg
@@ -134,9 +134,13 @@ export default {
       }
     },
     readBook () {
-      mpvue.lin.showMessage({
-        content: '正在努力开发中,感谢支持',
-        duration: 3500
+      let filename = this.$route.query.fileName
+      this.$router.push({
+        path: '/pages/book/main',
+        query: {
+          fileName: filename,
+          title: this.title
+        }
       })
     }
   },

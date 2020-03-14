@@ -2,6 +2,9 @@
 <div class="index">
 <div class="home" @click="showMessage">
   <div class="top">
+    <div class="muisc-pic">
+      <van-image @click="ToPlayer"  width="40" height="40" fit="cover" round lazy-load src="https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif?imageView2/1/w/80/h/80"></van-image>
+    </div>
   <div class="search">
     <searchBox :showbtn="false" :hotSearch="hotsearch" @oncatchclick="Search"></searchBox>
   </div>
@@ -216,6 +219,17 @@ export default {
     color:rgb(54, 131, 214);
     font-weight: 400;
     text-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+    display flex
+    .muisc-pic
+      margin-right 10px
+      margin-top 27px
+      display inline-block
+      vertical-align top
+    .search
+      vertical-align top
+      width 80%
+      margin-top 10px
+    
   .book-wrapper
     margin-top 25px
 .loading
