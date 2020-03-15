@@ -22,3 +22,8 @@ export const CATEGORY = {
   psychology: '心理学',
   statistics: '统计学'
 }
+export const playMode = {
+  loop: 0,
+  sequence: 1,
+  random: 2
+}

@@ -120,3 +120,20 @@ export function getcatalogueList (params) {
   const url = HOST + '/book/category/list/v2'
   return get(url, params)
 }
+
+// 获取歌曲播放路径
+export function getMusic (musicId) {
+  const url = `https://music.linkorg.club/song/url?id=${musicId}`
+  return get(url)
+}
+
+// 获取推荐歌曲列表
+export function getrecommendList () {
+  const url = 'https://music.linkorg.club/top/list?idx=0'
+  return get(url)
+}
+
+export function getLyric (id) {
+  const url = `https://music.linkorg.club/lyric?id=${id}`
+  return get(url)
+}

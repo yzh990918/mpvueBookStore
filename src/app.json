@@ -14,7 +14,8 @@
     "pages/book/main",
     "pages/favor/main",
     "pages/guanzhu/main",
-    "pages/honor.main"
+    "pages/honor.main",
+    "pages/music/main"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -30,6 +31,7 @@
     "l-loading":"/static/dist/loading/index",
     "van-image":"../static/vant/dist/image/index",
     "van-loading":"../static/dist/loading/index",
+    "van-icon":"../static/dist/icon/index",
     "van-rate":"../static/vant/dist/rate/index",
     "l-message":"../static/dist/message/index",
     "van-popup":"../static/vant/dist/popup/index",

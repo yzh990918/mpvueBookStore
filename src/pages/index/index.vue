@@ -192,6 +192,9 @@ export default {
       if (!userInfo) {
         Toast.fail('需要登录,才能体验完整功能')
       }
+    },
+    ToPlayer () {
+      this.$router.push('/pages/music/main')
     }
   },
 

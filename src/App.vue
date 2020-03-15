@@ -30,4 +30,5 @@ export default {
 <style>
 @import "./color-ui/main.css";
 @import "./color-ui/icon.css";
+@import "./icon/iconfont.css";
 </style>

@@ -1,0 +1,58 @@
+{
+  "id": "1627202",
+  "name": "书城项目",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "197803",
+      "name": "下一首",
+      "font_class": "xiayishou",
+      "unicode": "e627",
+      "unicode_decimal": 58919
+    },
+    {
+      "icon_id": "2716543",
+      "name": "随机",
+      "font_class": "suiji",
+      "unicode": "e6cc",
+      "unicode_decimal": 59084
+    },
+    {
+      "icon_id": "3585102",
+      "name": "顺序",
+      "font_class": "shunxu",
+      "unicode": "e655",
+      "unicode_decimal": 58965
+    },
+    {
+      "icon_id": "6225016",
+      "name": "播放",
+      "font_class": "bofang1",
+      "unicode": "e680",
+      "unicode_decimal": 59008
+    },
+    {
+      "icon_id": "8208249",
+      "name": "上一首",
+      "font_class": "shangyishou",
+      "unicode": "e612",
+      "unicode_decimal": 58898
+    },
+    {
+      "icon_id": "10410464",
+      "name": "正在播放",
+      "font_class": "zhengzaibofang",
+      "unicode": "e702",
+      "unicode_decimal": 59138
+    },
+    {
+      "icon_id": "13430680",
+      "name": "单曲循环",
+      "font_class": "danquxunhuan",
+      "unicode": "e613",
+      "unicode_decimal": 58899
+    }
+  ]
+}
