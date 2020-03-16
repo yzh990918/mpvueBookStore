@@ -137,3 +137,9 @@ export function getLyric (id) {
   const url = `https://music.linkorg.club/lyric?id=${id}`
   return get(url)
 }
+
+// 歌曲详情
+export function getmusicDetail (id) {
+  const url = `https://music.linkorg.club/song/detail?ids=${id}`
+  return get(url)
+}

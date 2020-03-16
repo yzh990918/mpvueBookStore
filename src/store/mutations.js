@@ -16,6 +16,21 @@ const mutations = {
   },
   [types.SET_CURRENTINDEX] (state, index) {
     state.currentIndex = index
+  },
+  [types.SET_ISPLAY] (state, flag) {
+    state.isplay = flag
+  },
+  [types.SET_CURRENTSONG] (state, music) {
+    state.currentSong = music
+  },
+  [types.SET_PLAYINGTIME] (state, time) {
+    state.playingTime = time
+  },
+  [types.STE_AUDIO] (state, audio) {
+    state.audio = audio
+  },
+  [types.SET_FLAG] (state, flag) {
+    state.flag = flag
   }
 }
 export default mutations

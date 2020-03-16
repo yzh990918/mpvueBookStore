@@ -38,7 +38,8 @@
     "van-toast":"../static/vant/dist/toast/index",
     "l-toast":"../static/dist/toast/index",
     "van-collapse":"../static//vant/dist/collapse/index",
-    "van-collapse-item":"../static/vant/dist/collapse-item/index"
+    "van-collapse-item":"../static/vant/dist/collapse-item/index",
+    "van-slider":"../static/vant/dist/slider/index"
   },
   "tabBar": {
     "color": "#707070",

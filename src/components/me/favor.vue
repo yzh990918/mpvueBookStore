@@ -123,19 +123,18 @@
             .book-title
               margin-top 8px
               margin-left 8px
-              font-size 11px
+              font-size 12px
               font-weight 500
               color #2c3e50
               overflow hidden
               white-space nowrap
               text-overflow ellipsis
             .author
-              margin-top -10px
               margin-left 8px
               font-size 10px
               overflow hidden
               white-space nowrap
               text-overflow ellipsis
-              color #666
+              color #aaaaaa
 
 </style>

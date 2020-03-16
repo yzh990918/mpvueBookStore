@@ -2,8 +2,11 @@
 <div class="index">
 <div class="home" @click="showMessage">
   <div class="top">
-    <div class="muisc-pic">
-      <van-image @click="ToPlayer"  width="40" height="40" fit="cover" round lazy-load src="https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif?imageView2/1/w/80/h/80"></van-image>
+    <div v-if="!currentSong.id" class="muisc-pic">
+      <van-image @click="ToPlayer"  width="50" height="50" fit="cover" round lazy-load src="https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif?imageView2/1/w/80/h/80"></van-image>
+    </div>
+      <div v-else class="muisc-pic">
+      <van-image @click="ToPlayer"  width="50" height="50" fit="cover" round lazy-load :src="currentSong.picUrl"></van-image>
     </div>
   <div class="search">
     <searchBox :showbtn="false" :hotSearch="hotsearch" @oncatchclick="Search"></searchBox>
@@ -44,8 +47,9 @@ import HomebookH from '../../components/Home/HomebookH'
 import HomebookR from '../../components/Home/HomebookR'
 import {getHomeData, getrecommend, getfreeRead, gethotBook} from '../../api/index.js'
 import {getStorageSync} from '../../api/wechat'
-
+import {playerMixin} from '../../utils/mixin'
 export default {
+  mixins: [playerMixin],
   name: '',
   props: [''],
   data () {
@@ -61,12 +65,8 @@ export default {
     }
   },
   components: {searchBox, Homecard, Homebanner, HomebookC, HomebookR, HomebookH, HomebookF},
-  created () {},
-
   computed: {},
-
   beforeMount () {},
-
   onLoad () {
     this.openId = getStorageSync('openId')
     let shortid = '1234'
@@ -75,7 +75,8 @@ export default {
   onShow () {
     this.getInfo()
   },
-
+  mounted () {
+  },
   methods: {
     getInfo () {
       let userflag = false
@@ -132,35 +133,6 @@ export default {
           break
       }
     },
-    // getsetting () {
-    //   getsetting('userInfo', () => {
-    //     this.authLoginFlag = true
-    //     this.getUserInfo()
-    //   }, () => {
-    //     this.authLoginFlag = false
-    //   })
-    // },
-    // getUserInfo () {
-    //   getUserInformation((userInfo) => {
-    //     console.log(userInfo)
-    //     setStorageSync('usnerInfo', userInfo)
-    //     const openId = getStorageSync('openId')
-    //     if (!openId || openId.length === 0) {
-    //       getOpenId()
-    //     } else {
-    //       // 已获得openid的回调执行
-    //       this.getHomeInfo(openId)
-    //       register(openId, userInfo)
-    //     }
-    //   },
-    //   () => {
-    //     console.log('failed')
-    //   }
-    //   )
-    // },
-    // init () {
-    //   this.getsetting()
-    // },
     Search () {
       this.$router.push('/pages/Search/main')
     },
@@ -241,4 +213,23 @@ export default {
   z-index 700
   top 50%
   transform translate3d(-50%,-50%,0)
+  .van-image{
+   animation rotate 20s linear infinite!important;
+  }
+</style>
+<style lang="stylus">
+.van-image--round{
+   animation rotate 20s linear infinite!important;
+}
+</style>
+<style>
+@keyframes rotate {
+    from {
+      transform: rotate(0);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+}
+   
 </style>

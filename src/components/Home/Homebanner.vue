@@ -2,32 +2,34 @@
   
     <div class="swipper-wrapper">
       <swiper class="swipper"  circular="true" autoplay="true" interval="5000" duration="500">
-        <swiper-item  v-for="(item,index) of swiperList" :key="index">
+        <swiper-item @click="playmusic(item)" v-for="(item,index) of swiperList" :key="index">
           <img class="swipper-item" mode="widthFix"  :src="item.imageUrl"/>
         </swiper-item>
       </swiper>
+      <van-toast id="van-toast" />
     </div>
-
 </template>
-
 <script>
+import { getmusicDetail } from '../../api/index'
 import {get} from '../../utils/http'
+import {playerMixin} from '../../utils/mixin'
 export default {
+  mixins: [playerMixin],
   name: '',
   props: [''],
   data () {
     return {
-      swiperList: []
+      swiperList: [],
+      playMusicItem: {}
     }
   },
   components: {},
-  created () {},
 
   computed: {},
 
   beforeMount () {},
 
-  mounted () {
+  created () {
     this.getSwipperList()
   },
 
@@ -36,6 +38,35 @@ export default {
       get('https://music.linkorg.club/banner').then((res) => {
         this.swiperList = res.data.banners
       })
+    },
+    playmusic (item) {
+      if (item.targetType === 1) {
+        console.log('播放歌曲')
+        getmusicDetail(item.targetId).then((res) => {
+          const {id, name, ar: [{name: singer}], al: {name: album, picUrl}} = res.data.songs[0]
+          console.log(res.data)
+          this.playMusicItem = {
+            id,
+            name,
+            singer,
+            picUrl,
+            album,
+            src: `https://music.163.com/song/media/outer/url?id=${id}.mp3`,
+            index: -2
+          }
+        }).then(() => {
+          this.$router.push('/pages/music/main')
+          this.setIsplay(true)
+          this.setTime(0)
+          this.setflag(false)
+        })
+      } else {
+        console.log('这是专辑,不能播放')
+      }
+      setTimeout(() => {
+        this.setCurrentSong(this.playMusicItem)
+      }, 700)
+      // setTimeout(() => { console.log(this.currentSong) }, 1000)
     }
   },
 

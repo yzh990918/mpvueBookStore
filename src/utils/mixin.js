@@ -1,4 +1,4 @@
-import { mapGetters, mapMutations, mapActions } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 export const playerMixin = {
   computed: {
     ...mapGetters([
@@ -7,7 +7,13 @@ export const playerMixin = {
       'sequencelist',
       'mode',
       'currentIndex',
-      'currentSong'
+      'currentSong',
+      'playingTime',
+      'audio',
+      'isplay',
+      'currentSong',
+      'flag'
+
     ])
   },
   methods: {
@@ -16,13 +22,13 @@ export const playerMixin = {
       setPlaylist: 'SET_PLAYLIST',
       setSequenceList: 'SET_SEQUENCE',
       setPlayMode: 'SET_PLAY_MODE',
-      setCurrentIndex: 'SET_CURRENTINDEX'
-    }),
-    ...mapActions([
-      'selectPlay',
-      'randomPlay',
-      'insertSong'
+      setCurrentIndex: 'SET_CURRENTINDEX',
+      setIsplay: 'SET_ISPLAY',
+      setCurrentSong: 'SET_CURRENTSONG',
+      setTime: 'SET_PLAYINGTIME',
+      setAduio: 'STE_AUDIO',
+      setflag: 'SET_FLAG'
 
-    ])
+    })
   }
 }

@@ -36,6 +36,19 @@
       </view>
     </view>   
   </view>
+   <view class="cu-item text-blue">
+    <view class="bg-blue content shadow">
+      <view class="cu-capsule radius">
+        <view class="cu-tag bg-white text-blue">v1.0.4</view>
+        <view class="cu-tag line-white">2020-3-16</view>
+      </view>
+      <view class="margin-top-sm text-content">
+        <view>1.增加音乐播放器</view>
+        <view>2.首页导航添加音乐链接,可以直接播放音乐</view>
+        <view>3.阅读器组件完善中</view>
+      </view>
+    </view>   
+  </view>
 </view>
 </template>
 

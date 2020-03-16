@@ -23,7 +23,7 @@ export const CATEGORY = {
   statistics: '统计学'
 }
 export const playMode = {
-  loop: 0,
-  sequence: 1,
-  random: 2
+  loop: 2,
+  sequence: 0,
+  random: 1
 }

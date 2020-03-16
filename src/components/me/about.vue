@@ -196,7 +196,6 @@ export default {
         login = true
       }
       this.showlog = login
-      console.log(this.showlog)
       // console.log(this.showlog)
       this.userInformation = getStorageSync('usnerInfo')
     }
