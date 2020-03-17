@@ -70,6 +70,8 @@
       "selectedIconPath": "static/tabs/S-Me.png"
     }
   ],
-    "position": "bottom"
+    "position": "bottom",
+    "requiredBackgroundModes": ["audio"]
+    
   }
 }

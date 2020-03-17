@@ -165,7 +165,7 @@ export default {
   beforeMount () {},
   created () {
     this.getSonglist()
-    this.innerAudioContext = wx.createInnerAudioContext()
+    this.innerAudioContext = wx.getBackgroundAudioManager()
   },
   mounted () {
     this.value = this.playingTime
@@ -230,6 +230,7 @@ export default {
         mask: true,
         message: '加载中...'
       })
+      this.innerAudioContext.title = item.name
       this.innerAudioContext.autoplay = true
       this.innerAudioContext.src = item.src
       this.innerAudioContext.play()

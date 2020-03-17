@@ -1,6 +1,6 @@
 <template>
   <div class="book">
-  <div id="read"></div>    
+    <web-view :src="url" ></web-view>
   </div>
 </template>
 
@@ -12,15 +12,14 @@
     props: [''],
     data () {
       return {
-        book: {}
+        book: {},
+        url: ''
 
       }
     },
 
     components: {},
     created () {
-      // this.book = new Epub('./2014_Book_Self-ReportedPopulationHealthA.epub')
-      // console.log(this.book)
     },
 
     computed: {},
@@ -32,6 +31,7 @@
       wx.setNavigationBarTitle({
         title: this.$route.query.title
       })
+      this.url = `https://ecutread.yangxiansheng.top/reader/${this.$route.query.fileName}`
     },
 
     methods: {
