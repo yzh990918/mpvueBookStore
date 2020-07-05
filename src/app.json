@@ -14,8 +14,9 @@
     "pages/book/main",
     "pages/favor/main",
     "pages/guanzhu/main",
-    "pages/honor.main",
-    "pages/music/main"
+    "pages/honor/main",
+    "pages/music/main",
+    "pages/teacher/main"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -24,22 +25,23 @@
     "navigationBarTextStyle": "black"
   },
   "usingComponents": {
-    "l-icon":"../static/dist/icon/index",
-    "l-button":"../static/dist/button/index",
-    "van-dialog":"../static/vant/dist/dialog/index",
+    "l-icon":"/static/dist/icon/index",
+    "l-button":"/static/dist/button/index",
+    "van-dialog":"/static/vant/dialog/index",
     "l-loadmore":"/static/dist/loadmore/index",
     "l-loading":"/static/dist/loading/index",
-    "van-image":"../static/vant/dist/image/index",
-    "van-loading":"../static/dist/loading/index",
-    "van-icon":"../static/dist/icon/index",
-    "van-rate":"../static/vant/dist/rate/index",
-    "l-message":"../static/dist/message/index",
-    "van-popup":"../static/vant/dist/popup/index",
-    "van-toast":"../static/vant/dist/toast/index",
-    "l-toast":"../static/dist/toast/index",
-    "van-collapse":"../static//vant/dist/collapse/index",
-    "van-collapse-item":"../static/vant/dist/collapse-item/index",
-    "van-slider":"../static/vant/dist/slider/index"
+    "van-image":"/static/vant/image/index",
+    "van-loading":"/static/dist/loading/index",
+    "van-icon":"/static/dist/icon/index",
+    "van-rate":"/static/vant/index",
+    "l-message":"/static/dist/message/index",
+    "van-popup":"/static/vant/popup/index",
+    "van-toast":"/static/vant/toast/index",
+    "l-toast":"/static/dist/toast/index",
+    "l-image-picker":"/static/dist/image-picker/index",
+    "van-collapse":"/static//vant/collapse/index",
+    "van-collapse-item":"/static/vant/collapse-item/index",
+    "van-slider":"/static/vant/slider/index"
   },
   "tabBar": {
     "color": "#707070",
@@ -72,6 +74,5 @@
   ],
     "position": "bottom",
     "requiredBackgroundModes": ["audio"]
-    
   }
 }

@@ -3,7 +3,7 @@
   <view class="UCenter-bg">
     <image src="https://i.loli.net/2020/02/17/qKnZz13REVmvP6x.png" class="png" mode="widthFix"></image>
     <view class="text-xl title">东理悦读
-      <text class="text-df">v1.0.1</text>
+      <text class="text-df">v1.0.6</text>
     </view>
     <image src="https://raw.githubusercontent.com/weilanwl/ColorUI/master/demo/images/wave.gif" mode="scaleToFill" class="gif-wave"></image>
   </view>
@@ -49,6 +49,12 @@
       <view class="content">
         <text class="cuIcon-formfill text-cyan"></text>
         <text class="text-grey">日志</text>
+      </view>
+    </view>
+      <view class="cu-item arrow">
+      <view class="content"  @click="Toteacher">
+        <text class="cuIcon-profile text-blue" ></text>
+        <text class="text-grey">教师入口</text>
       </view>
     </view>
     <view class="cu-item arrow">
@@ -154,6 +160,9 @@ export default {
     },
     showImage () {
       this.$router.push('/pages/donate/main')
+    },
+    Toteacher () {
+      this.$router.push('/pages/teacher/main')
     },
     changeColor () {
       dialog.alert({

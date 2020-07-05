@@ -35,16 +35,15 @@ export default {
 
   methods: {
     getSwipperList () {
-      get('https://music.linkorg.club/banner').then((res) => {
-        this.swiperList = res.data.banners
+      get('https://neteasemusic.yangxiansheng.top/banner').then((res) => {
+        this.swiperList = res.data.body.banners
       })
     },
     playmusic (item) {
       if (item.targetType === 1) {
         console.log('播放歌曲')
         getmusicDetail(item.targetId).then((res) => {
-          const {id, name, ar: [{name: singer}], al: {name: album, picUrl}} = res.data.songs[0]
-          console.log(res.data)
+          const {id, name, ar: [{name: singer}], al: {name: album, picUrl}} = res.data.body.songs[0]
           this.playMusicItem = {
             id,
             name,

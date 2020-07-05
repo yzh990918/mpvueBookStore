@@ -10,16 +10,16 @@
   <div class="about">
   <div class="team-wrapper">
     <div class="item" v-for="(item,index) in teamdata" :key="index">
-      <div class="top shadow bg-gray" >
-        <div class="img-wrapper">
-          <van-image :src="item.avatar" lazy-load width="80" height="110" cover="fit"></van-image>
+      <div class="top shadow bg-white" >
+        <div class="img-wrapper shadow ">
+          <van-image round :src="item.avatar" lazy-load width="90" height="90" cover="fit"></van-image>
         </div>
         <div class="info">
-          <div class="name">{{item.name}}</div>
-          <div class="sub-title">{{item.info}}</div>
+          <div class="name text-black">{{item.name}}</div>
+          <div class="sub-title text-gray">{{item.info}}</div>
         </div>
       </div>
-      <div  class="desc bg-white text-gray">{{item.desc}}</div>
+      <div  class="desc bg-blue text-content">{{item.desc}}</div>
     </div>
 
   </div>
@@ -67,7 +67,7 @@
             name: '徐固',
             avatar: 'https://wpimg.wallstcn.com/9e2a5d0a-bd5b-457f-ac8e-86554616c87b.jpg?imageView2/1/w/80/h/80',
             info: '软件学院大三学生',
-            desc: '本科就读于东华理工大学(尚未毕业),擅长后盾开发,熟练掌握java,springboot，springMvc，restfulAPi开发,熟练使用数据库交互和部署后端服务,是本项目的主要后端开发者.'
+            desc: '本科就读于东华理工大学(尚未毕业),擅长后端接口权限开发,熟练掌握java,springboot，springMvc，restfulAPi开发,熟练使用数据库交互和部署后端服务,是本项目的主要后端开发者.'
           },
           {
             id: 1,
@@ -113,10 +113,12 @@
       .top
         display flex
         .img-wrapper
-          flex 0 0 70px
-          width 70px
-          margin-top -10px
-          height 110px
+          flex 0 0 90px
+          border-radius 50%
+          margin-top -8px
+          width 90px
+          height 90px
+          box-shadow:0 30rpx 20rpx rgba(0, 0, 0, 0.2);
         .info
           flex 1
           display flex
@@ -132,7 +134,6 @@
             line-height 20px
           .sub-title
             font-size 12px
-            color #666
             line-height 16px
       .desc
         margin-top -4px

@@ -213,9 +213,6 @@ export default {
   z-index 700
   top 50%
   transform translate3d(-50%,-50%,0)
-  .van-image{
-   animation rotate 20s linear infinite!important;
-  }
 </style>
 <style lang="stylus">
 .van-image--round{

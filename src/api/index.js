@@ -123,23 +123,23 @@ export function getcatalogueList (params) {
 
 // 获取歌曲播放路径
 export function getMusic (musicId) {
-  const url = `https://music.linkorg.club/song/url?id=${musicId}`
+  const url = `https://neteasemusic.yangxiansheng.top/song/url?id=${musicId}`
   return get(url)
 }
 
 // 获取推荐歌曲列表
 export function getrecommendList () {
-  const url = 'https://music.linkorg.club/top/list?idx=0'
+  const url = 'https://neteasemusic.yangxiansheng.top/top/list?idx=0'
   return get(url)
 }
 
 export function getLyric (id) {
-  const url = `https://music.linkorg.club/lyric?id=${id}`
+  const url = `https://neteasemusic.yangxiansheng.top/lyric?id=${id}`
   return get(url)
 }
 
 // 歌曲详情
 export function getmusicDetail (id) {
-  const url = `https://music.linkorg.club/song/detail?ids=${id}`
+  const url = `https://neteasemusic.yangxiansheng.top/song/detail?ids=${id}`
   return get(url)
 }

@@ -219,7 +219,7 @@ export default {
     // 获取歌曲列表并且将歌曲对象改造
     getSonglist () {
       getrecommendList().then((res) => {
-        this.recommendlist = res.data.playlist.tracks
+        this.recommendlist = res.data.body.playlist.tracks
         this.setSequenceList(this.recommendlist)
         this.setPlaylist(this.recommendlist)
       })

@@ -15,12 +15,12 @@
   <view class='text-center margin-bottom text-lg  text-grey'>关于悦读ECUT</view>
   <view class='text-content'>
     <view>Hi！欢迎使用悦读ECUT！</view>
-    <view class='margin-top-sm'>该项目是我(杨志豪)在20年1月份开发出来的一款书城小程序，它集成了vant-weapp color-ui lin-ui 采用的是mpvue开发多端小程序框架开发的，由衷感谢这些ui框架和mpvue框架</view>
+    <view class='margin-top-sm'>该项目是我(杨志豪)在20年1月份开发出来的一款书城小程序，它集成了vant-weapp color-ui lin-ui多个优秀的组件库 采用的是mpvue开发多端小程序框架(加部分原生小程API)开发的，由衷感谢这些ui框架和mpvue框架</view>
      <view class='margin-top-sm'>项目需要您绑定一下账号授权,不然书架和阅读功能可能无法使用</view>
     <view class='margin-top-sm'>小程序是免费的，不收取任何费用，如果这个书城有帮到你，或者你觉得很赞，可以在GitHub里扫描赞赏码支持一下！</view>
-    <view class='margin-top-sm'>书城包含了首页,推荐,轮播,免费热读,热门更新,图书分类,图书搜索,图书列表,书架等功能</view>
+    <view class='margin-top-sm'>书城包含了首页,推荐,轮播,免费热读,热门更新,图书分类,图书搜索,图书列表,书架，播放音乐等功能</view>
     <view class='margin-top-sm'>合作微信:Ynulinulizainuli0918</view>
-    <view class='margin-top-sm'>更多功能敬请期待！</view>
+    <view class='margin-top-sm'>更多好玩的功能敬请期待！</view>
   </view>
 </view>
 

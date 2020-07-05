@@ -49,6 +49,30 @@
       </view>
     </view>   
   </view>
+   <view class="cu-item text-blue">
+    <view class="bg-blue content shadow">
+      <view class="cu-capsule radius">
+        <view class="cu-tag bg-white text-blue">v1.0.5</view>
+        <view class="cu-tag line-white">2020-3-18</view>
+      </view>
+      <view class="margin-top-sm text-content">
+        <view>1.阅读器组件体验版上线</view>
+        <view>2.优化播放器组件</view>
+        <view>3.添加教师入口页面</view>
+      </view>
+    </view>   
+  </view>
+   <view class="cu-item text-blue">
+    <view class="bg-blue content shadow">
+      <view class="cu-capsule radius">
+        <view class="cu-tag bg-white text-blue">v1.0.6</view>
+        <view class="cu-tag line-white">2020-7-05</view>
+      </view>
+      <view class="margin-top-sm text-content">
+        <view>修复音乐轮播无法跳转播放问题</view>
+      </view>
+    </view>   
+  </view>
 </view>
 </template>
 
