@@ -1,8 +1,8 @@
 import {get, post} from '../utils/http'
 
-const HOST = 'https://test.youbaobao.xyz:18081'
-const appid = 'wxdcb143e3cf5afacd'
-const appsecret = '8a75dfade75690295ab94f82fc25c292'
+const HOST = ''
+const appid = ''
+const appsecret = ''
 
 // 获取首页信息
 export function getHomeData (params) {
